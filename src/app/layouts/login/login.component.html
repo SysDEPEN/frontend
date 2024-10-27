@@ -1,1 +1,48 @@
-<p>login works!</p>
+<div class="card">
+  <div class=""></div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-4"></div>
+
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body">
+
+          <h2>Realize o login</h2>
+          <form>
+            <mdb-form-control class="mb-4">
+              <input
+                mdbInput
+                type="text"
+                id="form1Example1"
+                class="form-control"
+                [(ngModel)]="login.document"
+                [ngModelOptions]="{ standalone: true }"
+              />
+              <label mdbLabel class="form-label" for="form1Example1"
+                >Email address</label
+              >
+            </mdb-form-control>
+            <mdb-form-control class="mb-4">
+              <input
+                mdbInput
+                type="password"
+                id="usuario"
+                class="form-control"
+                [(ngModel)]="login.password"
+                [ngModelOptions]="{ standalone: true }"
+              />
+              <label id="senha" mdbLabel class="form-label" for="form1Example2"
+                >Password</label
+              >
+            </mdb-form-control>
+          </form>
+          <button type="button" class="btn btn-primary" (click)="logar()">Button</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>

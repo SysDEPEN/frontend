@@ -8,15 +8,8 @@ import { SendDocumentsComponent } from './layouts/send-documents/send-documents.
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: MainComponent },
-  {
-    path: 'sign-in',
-    component: LoginComponent,
-    children: [
-      {
-        path: 'sign-up', component: RegisterComponent
-      },
-      { path: 'send-form', component: SendFormComponent },
-      { path: 'send-documents', component: SendDocumentsComponent },
-    ]
-  }
+  { path: 'sign-in', component: LoginComponent },
+  { path: 'sign-up', component: RegisterComponent },
+  { path: 'send-form', component: SendFormComponent },
+  { path: 'send-document', component: SendDocumentsComponent },
 ];
