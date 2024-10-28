@@ -15,6 +15,6 @@ export class LoginService {
   constructor() { }
 
   handleLogin(login: Login): Observable<string> {
-    return this.http.post<string> (this.API+"/login")zz
+    return this.http.post<string> (this.API+"/login")
   }
 }
