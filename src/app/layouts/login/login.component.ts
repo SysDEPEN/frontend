@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
  document: string = '';
- password: string = ''; 
+ password: string = '';
 
  router = inject(Router);
 
@@ -24,7 +24,7 @@ export class LoginComponent {
       next: (response) => {
         localStorage.setItem('jwtToken', response.Token)
         console.log('Login bem-sucedido!')
-        this.router.navigate(['home/candidato']);
+        this.router.navigate(['home/']);
       },
       error: (error) => {
         console.error('Erro ao fazer login', error);

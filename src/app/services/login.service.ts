@@ -12,15 +12,18 @@ export class LoginService {
   http = inject(HttpClient);
 
   API = "http://localhost:8080/api/v1/logins"
-document: any;
-password: any;
+  document: any;
+  password: any;
 
   constructor() { }
 
-  handleLogin(document:string, password:string): Observable<any> {
-    const loginData = {document, password}
-    return this.http.post<any>(`${this.API}/login`, loginData, {
-      headers: new HttpHeaders({'Content-Type': 'application/json'})
-    })
+  handleLogin(document: string, password: string): Observable<any> {
+    const login = { document, password }
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'secret-key': 'sua_secret_key_aqui' // Insira a chave aqui
+    });
+
+    return this.http.post<any>(`${this.API}/login`, login, { headers });
   }
 }
