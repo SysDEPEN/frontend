@@ -1,28 +1,10 @@
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <!-- Container wrapper -->
-  <div class="container">
-    <!-- Navbar brand -->
-    <a class="navbar-brand me-2" href="#">
-      <img
-        src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.webp"
-        height="16"
-        alt=""
-        loading="lazy"
-        style="margin-top: -1px;"
-      />
-    </a>
-
-    <!-- Toggle button -->
-    <button
-      class="navbar-toggler"
-      type="button"
-      (click)="buttonsNav.toggle()"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <i class="fas fa-bars"></i>
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">LOGO AQUI</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
+<<<<<<< HEAD
 
     <!-- Collapsible wrapper -->
     <div
@@ -35,25 +17,24 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" href="send-form">Enviar documentos</a>
+=======
+    <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item ">
+          <a class="nav-link opcao" aria-current="page" href="#">Inicio</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link opcao" href="#">Contato</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link opcao" href="#">Documentos</a>
+>>>>>>> 8381cc3571868c0560fdf5003e6517f710857d12
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Ver requerimentos</a>
+          <a class="nav-link opcao">Sobre</a>
         </li>
       </ul>
-
-      <!-- Left links -->
-
-      <div class="d-flex align-items-center">
-        <a type="button" href="/sign-in" class="btn btn-link px-3 me-2">
-          Login
-        </a>
-        <a href="/sign-up" type="button" class="btn btn-primary me-3">
-          Cadastre
-        </a>
-      </div>
     </div>
-    <!-- Collapsible wrapper -->
+    <a href="/sign-in" type="button" class="btn btn-primary botao">Entrar</a>
   </div>
-  <!-- Container wrapper -->
 </nav>
-<!-- Navbar -->
