@@ -15,8 +15,8 @@ export const routes: Routes = [
   { path: 'sign-up', component: RegisterComponent },
   { path: 'send-form', component: SendFormComponent },
   { path: 'send-document', component: SendDocumentsComponent },
-//  { path: 'documentos', component: DocumentosComponent }, // Crie o componente DocumentosComponent
-//  { path: 'sobre', component: SobreComponent }, // Crie o componente SobreComponent
+//  { path: 'documentos', component: DocumentosComponent }, 
+//  { path: 'sobre', component: SobreComponent }, 
 ];
 
 @NgModule({
