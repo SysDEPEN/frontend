@@ -5,7 +5,7 @@ import { RegisterComponent } from './layouts/register/register.component';
 import { SendFormComponent } from './layouts/send-form/send-form.component';
 import { SendDocumentsComponent } from './layouts/send-documents/send-documents.component';
 import { NgModule } from '@angular/core';
-import { HomePageComponent } from './pages/home-page/home-page.component';
+import { HomePageComponent } from './layouts/home-page/home-page.component';
 
 
 export const routes: Routes = [
@@ -15,8 +15,8 @@ export const routes: Routes = [
   { path: 'sign-up', component: RegisterComponent },
   { path: 'send-form', component: SendFormComponent },
   { path: 'send-document', component: SendDocumentsComponent },
-//  { path: 'documentos', component: DocumentosComponent }, 
-//  { path: 'sobre', component: SobreComponent }, 
+//  { path: 'documentos', component: DocumentosComponent },
+//  { path: 'sobre', component: SobreComponent },
 ];
 
 @NgModule({
