@@ -7,24 +7,16 @@ import { Observable } from 'rxjs';
 })
 export class RegisterService {
 
-  http = inject(HttpClient);
-  API = "http://localhost:8080/api/v1/"
+  private readonly API = 'http://localhost:8080/api/v1/users';
+  private http = inject(HttpClient);
 
-  constructor() { }
+  constructor() {}
 
-  registerData!: {
-    username: string,
-    document: string,
-    email: string,
-    password: string
-  };
-
-  handleRegister(registerData: any): Observable<any> {
-    const register = new registerData;
+  handleRegister(name: string, document: string, email: string, password: string): Observable<any> {
+    const registerData = { name, document, email, password };
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    })
-
-    return
+      'Content-Type': 'application/json'
+    });
+    return this.http.post(`${this.API}/save`, registerData, { headers });
   }
 }
