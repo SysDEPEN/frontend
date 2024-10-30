@@ -2,22 +2,27 @@
 
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { IBGEUFResponse } from "../models/IBGEUF";
 import { Observable } from "rxjs";
+import { IBGECityResponse, IBGEUFResponse } from "../models/IBGEUF";
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class IBGEService {
-  http = inject(HttpClient)
+  http = inject(HttpClient);
 
-  API = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados'
+  API = 'https://servicodados.ibge.gov.br/api/v1/localidades';
 
-  constructor() { }
-
+  constructor() {}
 
   listAllUFs(): Observable<IBGEUFResponse[]> {
-    return this.http.get<IBGEUFResponse[]>(this.API);
+    const url = `${this.API}/estados`; // Correção da URL
+    return this.http.get<IBGEUFResponse[]>(url); // Retorno correto da requisição
+  }
+
+  listAllCities(selectedUf: string): Observable<IBGECityResponse[]> {
+    const url = `${this.API}/estados${selectedUf}/municipios`;
+    return this.http.get<IBGECityResponse[]>(url);
   }
 }
