@@ -6,6 +6,7 @@ import { SendDocumentsComponent } from './layouts/send-documents/send-documents.
 import { NgModule } from '@angular/core';
 import { HomePageComponent } from './layouts/home-page/home-page.component';
 import { SobreComponent } from './layouts/sobre/sobre.component';
+import { ContatosComponent } from './layouts/contatos/contatos.component';
 
 
 export const routes: Routes = [
@@ -15,7 +16,7 @@ export const routes: Routes = [
   { path: 'sign-up', component: RegisterComponent },
   { path: 'send-form', component: SendFormComponent },
   { path: 'send-document', component: SendDocumentsComponent },
-//  { path: 'documentos', component: DocumentosComponent }, 
+  { path: 'contatos', component: ContatosComponent }, 
   { path: 'sobre', component: SobreComponent }, 
 ];
 
