@@ -53,7 +53,6 @@
             <option value="" disabled selected>Escolha um Estado</option>
             <option *ngFor="let c of UF" [value]="c.sigla">{{ c.sigla }}</option>
           </select>
-          <div class="text-danger mt-1" *ngIf="form.get('state') && form.get('state')">Selecione um Estado!</div>
         </mdb-form-control>
 
         <mdb-form-control class="mb-4">
@@ -62,7 +61,6 @@
             <option value="" disabled selected>Escolha uma Cidade</option>
             <option *ngFor="let c of cities" [value]="c.nome">{{ c.nome }}</option>
           </select>
-          <div class="text-danger mt-1" *ngIf="form.get('city') && form.get('city')">Selecione uma cidade!</div>
         </mdb-form-control>
 
         <mdb-form-control class="mb-4">
