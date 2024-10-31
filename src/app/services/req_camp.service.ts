@@ -13,7 +13,7 @@ export class ReqCampService {
   constructor() {}
 
   save(res: reqCamp): Observable<reqCamp> {
-    const req = res;
+    const requerimentoInfo = res;
     const url = `${this.API}/`;
 
     const headers = new HttpHeaders({
@@ -21,7 +21,7 @@ export class ReqCampService {
       'secret-key':
         'BvPHGM8C0ia4uOuxxqPD5DTbWC9F9TWvPStp3pb7ARo0oK2mJ3pd3YG4lxA9i8bj6OTbadwezxgeEByY',
     });
-
-    return this.http.post<reqCamp>(url, req, { headers });
+    console.log(requerimentoInfo)
+    return this.http.post<reqCamp>(url, requerimentoInfo, { headers });
   }
 }

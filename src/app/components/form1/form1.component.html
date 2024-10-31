@@ -7,7 +7,7 @@
         <div class="row mb-4">
           <div class="col">
             <mdb-form-control>
-              <input mdbInput type="text" formControlName="nome_visitado" class="form-control" />
+              <input mdbInput type="text" formControlName="name_visited" class="form-control" />
               <label mdbLabel class="form-label" for="form6Example1">Nome do visitado</label>
             </mdb-form-control>
           </div>
@@ -21,7 +21,7 @@
         </div>
 
         <mdb-form-control class="form-outline mb-4">
-          <input mask="(00) 0 0000 0000" mdbInput type="text" formControlName="telefone" class="form-control" />
+          <input mask="(00) 0 0000 0000" mdbInput type="text" formControlName="cellphone" class="form-control" />
           <label mdbLabel class="form-label" for="form6Example6">Telefone</label>
         </mdb-form-control>
 
@@ -29,13 +29,13 @@
           <div class="col">
             <mdb-form-control>
               <label for="typeVisitSelect" class="form-label">Selecione o tipo de visitação</label>
-              <select id="typeVisitSelect" class="form-select mdb-select" formControlName="tipo_visitacao" required>
+              <select id="typeVisitSelect" class="form-select mdb-select" formControlName="type_visitation" required>
                 <option value="" disabled selected>Escolha</option>
                 <option *ngFor="let c of typeVisit" [value]="c.label">{{ c.label }}</option>
               </select>
             </mdb-form-control>
           </div>
-          <div class="col">
+          <!-- <div class="col">
             <mdb-form-control>
               <label for="reqOptionsSelect" class="form-label">Assunto do requerimento</label>
               <select id="reqOptionsSelect" class="form-select mdb-select" formControlName="requerimento_assunto" required>
@@ -43,40 +43,40 @@
                 <option *ngFor="let c of reqOptions" [value]="c.label">{{ c.label }}</option>
               </select>
             </mdb-form-control>
-          </div>
+          </div> -->
         </div>
 
         <mdb-form-control class="mb-4">
           <label for="ufSelect" class="form-label">Selecione um Estado</label>
-          <select id="ufSelect" class="form-select mdb-select" formControlName="estado"
+          <select id="ufSelect" class="form-select mdb-select" formControlName="state"
             (ngModelChange)="listAllCities($event)" required>
             <option value="" disabled selected>Escolha um Estado</option>
             <option *ngFor="let c of UF" [value]="c.sigla">{{ c.sigla }}</option>
           </select>
-          <div class="text-danger mt-1" *ngIf="form.get('estado') && form.get('estado')">Selecione um Estado!</div>
+          <div class="text-danger mt-1" *ngIf="form.get('state') && form.get('state')">Selecione um Estado!</div>
         </mdb-form-control>
 
         <mdb-form-control class="mb-4">
           <label for="citySelect" class="form-label">Selecione a Cidade</label>
-          <select id="citySelect" class="form-select mdb-select" formControlName="cidade" required>
+          <select id="citySelect" class="form-select mdb-select" formControlName="city" required>
             <option value="" disabled selected>Escolha uma Cidade</option>
             <option *ngFor="let c of cities" [value]="c.nome">{{ c.nome }}</option>
           </select>
-          <div class="text-danger mt-1" *ngIf="form.get('cidade') && form.get('cidade')">Selecione uma cidade!</div>
+          <div class="text-danger mt-1" *ngIf="form.get('city') && form.get('city')">Selecione uma cidade!</div>
         </mdb-form-control>
 
         <mdb-form-control class="mb-4">
-          <input mdbInput type="text" formControlName="bairro" class="form-control" />
+          <input mdbInput type="text" formControlName="district" class="form-control" />
           <label mdbLabel class="form-label" for="form6Example4">Bairro</label>
         </mdb-form-control>
 
         <mdb-form-control class="mb-4">
-          <input mdbInput type="text" formControlName="rua" class="form-control" />
+          <input mdbInput type="text" formControlName="street" class="form-control" />
           <label mdbLabel class="form-label" for="form6Example4">Rua</label>
         </mdb-form-control>
 
         <mdb-form-control class="mb-4">
-          <input mdbInput type="text" formControlName="numero_casa" class="form-control" />
+          <input mdbInput type="text" formControlName="number_house" class="form-control" />
           <label mdbLabel class="form-label" for="form6Example4">Número</label>
         </mdb-form-control>
 

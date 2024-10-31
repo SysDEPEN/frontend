@@ -10,6 +10,7 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { ReqCampService } from '../../services/req_camp.service';
 import { reqCamp } from '../../models/req_camps';
 import { LocalStorageService } from '../../services/localStorage.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'component-form',
@@ -53,16 +54,15 @@ export class formComponent implements OnInit {
     ) {
     // Inicialize o FormGroup
     this.form = new FormGroup({
-      nome_visitado: new FormControl('', Validators.required),
+      name_visited: new FormControl('', Validators.required),
       cpf_rne: new FormControl('', Validators.required),
-      telefone: new FormControl('', Validators.required),
-      tipo_visitacao: new FormControl('', Validators.required),
-      requerimento_assunto: new FormControl('', Validators.required),
-      estado: new FormControl('', Validators.required),
-      cidade: new FormControl('', Validators.required),
-      bairro: new FormControl('', Validators.required),
-      rua: new FormControl('', Validators.required),
-      numero_casa: new FormControl('', Validators.required),
+      cellphone: new FormControl('', Validators.required),
+      type_visitation: new FormControl('', Validators.required),
+      state: new FormControl('', Validators.required),
+      city: new FormControl('', Validators.required),
+      district: new FormControl('', Validators.required),
+      street: new FormControl('', Validators.required),
+      number_house: new FormControl('', Validators.required),
     });
   }
 
@@ -96,9 +96,6 @@ export class formComponent implements OnInit {
 
   submitForm(): void {
     if (this.form.valid) {
-      let userCurrent = {
-        id: this.user.id
-      }
       const formData: reqCamp = this.form.value; // Captura os dados do formulário
       const data = {
         ...formData,
@@ -109,10 +106,21 @@ export class formComponent implements OnInit {
 
       this.req_campService.save(data).subscribe({
         next: (response) => {
-          console.log('Dados enviados com sucesso:', response);
+          Swal.fire({
+            title: 'Sucesso!',
+            text: 'Cadastro realizado com sucesso',
+            icon: 'success',
+            confirmButtonText: 'Seguir para o Login',
+          });
         },
         error: (error) => {
-          console.error('Erro ao enviar os dados:', error);
+          console.log(error)
+          Swal.fire({
+            title: 'Erro',
+            text: 'Falha ao realizar o formulário: ',
+            icon: 'error',
+            confirmButtonText: 'Tente novamente',
+          });
         },
       });
     } else {
