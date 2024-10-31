@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IBGEService } from '../../services/bge.service';
-import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { CommonModule } from '@angular/common';
-import {jwtDecode} from 'jwt-decode';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { jwtDecode } from 'jwt-decode';
+import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
+import { IBGEService } from '../../services/bge.service';
 
-import { IBGECityResponse, IBGEUFResponse } from '../../models/IBGEUF';
+import { Router } from '@angular/router';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
-import { ReqCampService } from '../../services/req_camp.service';
+import Swal from 'sweetalert2';
+import { IBGECityResponse, IBGEUFResponse } from '../../models/IBGEUF';
 import { reqCamp } from '../../models/req_camps';
 import { LocalStorageService } from '../../services/localStorage.service';
-import Swal from 'sweetalert2';
+import { ReqCampService } from '../../services/req_camp.service';
 
 @Component({
   selector: 'component-form',
@@ -19,13 +20,14 @@ import Swal from 'sweetalert2';
     MdbFormsModule,
     CommonModule,
     NgxMaskDirective,
-    ReactiveFormsModule],
+    ReactiveFormsModule,
+  ],
   templateUrl: './form1.component.html',
   styleUrls: ['./form1.component.scss'],
-  providers: [provideNgxMask({})]
+  providers: [provideNgxMask({})],
 })
 export class formComponent implements OnInit {
-
+  router = inject(Router);
   form: FormGroup; // Define o FormGroup
 
   UF: IBGEUFResponse[] = []; // Lista das UFs
@@ -34,15 +36,15 @@ export class formComponent implements OnInit {
   documentType: 'RNE' | 'RG' = 'RG';
 
   typeVisit = [
-    { label: "Parentes", value: "Parentes" },
-    { label: "Amigos", value: "Amigos" },
-    { label: "Visita da igreja", value: "Visita da igreja" },
+    { label: 'Parentes', value: 'Parentes' },
+    { label: 'Amigos', value: 'Amigos' },
+    { label: 'Visita da igreja', value: 'Visita da igreja' },
   ];
 
   reqOptions = [
-    { label: "Visita social", value: "Visita social" },
-    { label: "Visita assistida", value: "Visita assistida" },
-    { label: "Visita íntima", value: "Visita íntima" },
+    { label: 'Visita social', value: 'Visita social' },
+    { label: 'Visita assistida', value: 'Visita assistida' },
+    { label: 'Visita íntima', value: 'Visita íntima' },
   ];
 
   user: any;
@@ -50,8 +52,8 @@ export class formComponent implements OnInit {
   constructor(
     private ibgeService: IBGEService,
     private req_campService: ReqCampService,
-    private localStorageService: LocalStorageService,
-    ) {
+    private localStorageService: LocalStorageService
+  ) {
     // Inicialize o FormGroup
     this.form = new FormGroup({
       name_visited: new FormControl('', Validators.required),
@@ -70,9 +72,9 @@ export class formComponent implements OnInit {
     this.listAllUFS();
     const storedUser = localStorage.getItem('jwtToken');
     if (storedUser) {
-        const decodedToken = jwtDecode(storedUser)
-        this.user = decodedToken;
-        console.log(this.user.id);
+      const decodedToken = jwtDecode(storedUser);
+      this.user = decodedToken;
+      console.log(this.user.id);
     }
   }
 
@@ -95,14 +97,14 @@ export class formComponent implements OnInit {
   }
 
   submitForm(): void {
-    let dat_user ={
-      id: this.user.id
-    }
+    let dat_user = {
+      id: this.user.id,
+    };
     if (this.form.valid) {
       const formData: reqCamp = this.form.value; // Captura os dados do formulário
       const data = {
         ...formData,
-        id_user: dat_user // Adiciona os dados do usuário ao objeto de envio
+        id_user: dat_user, // Adiciona os dados do usuário ao objeto de envio
       };
 
       console.log(data); // Exibe os dados a serem enviados
@@ -115,9 +117,10 @@ export class formComponent implements OnInit {
             icon: 'success',
             confirmButtonText: 'Seguir para o Login',
           });
+          this.router.navigate(['/send-document']);
         },
         error: (error) => {
-          console.log(error)
+          console.log(error);
           Swal.fire({
             title: 'Erro',
             text: 'Falha ao realizar o formulário: ',
@@ -130,5 +133,4 @@ export class formComponent implements OnInit {
       console.log('Formulário inválido', this.form);
     }
   }
-
 }

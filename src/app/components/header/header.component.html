@@ -28,6 +28,9 @@
     <a *ngIf="!userLogged" href="/sign-in" type="button" class="btn btn-primary botao d-flex flex-row">Entrar
       <img src="/img/entar.png" alt="Logo" class="entrar"/>
     </a>
+    <a *ngIf="!userLogged" href="/sign-up" type="button" class="register btn btn-primary botao d-flex flex-row">Cadastrar
+      <img src="/img/entar.png" alt="Logo" class="entrar"/>
+    </a>
     <span *ngIf="userLogged == true" class="user btn btn-primary botao d-flex flex-row">{{user}}
     </span>
   </div>
