@@ -16,18 +16,20 @@ export class RegisterService {
     document: string,
     email: string,
     password: string,
-    data_birth: string
+    data_birth: string,
+    gender: string
   ): Observable<any> {
-    const role:number = 0;
+    const role: number = 0;
     const registerData = {
       name,
       document,
       email,
       password,
+      gender,
       data_birth,
       role,
       created_at: Date.now(),
-      updated_at: Date.now()
+      updated_at: Date.now(),
     };
 
     const headers = new HttpHeaders({

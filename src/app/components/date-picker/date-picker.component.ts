@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './date-picker.component.html',
-  styleUrl: './date-picker.component.scss',
+  styleUrls: ['./date-picker.component.scss'], // Corrigido para "styleUrls"
 })
 export class DatePickerComponent {
   @Output() birthDateChange = new EventEmitter<string>(); // Emissor de evento
@@ -26,6 +26,7 @@ export class DatePickerComponent {
       this.birthDateChange.emit(value);
     });
   }
+
   onGenderChange() {
     const gender = this.form.get('gender')?.value;
     this.genderChange.emit(gender);

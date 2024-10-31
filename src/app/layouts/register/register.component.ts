@@ -31,20 +31,16 @@ export class RegisterComponent {
         Validators.required,
         Validators.minLength(6),
       ]),
+      birthDate: new FormControl('', Validators.required),
+      gender: new FormControl('', Validators.required),
     });
   }
 
   onRegister() {
     if (this.registerForm.valid) {
-      const { name, document, email, password } = this.registerForm.value;
+      const { name, document, email, password, birthDate, gender } = this.registerForm.value;
       this.register
-        .handleRegister(
-          name,
-          document,
-          email,
-          password,
-          this.onBirthDateChange.toString()
-        )
+        .handleRegister(name, document, email, password, birthDate, gender)
         .subscribe({
           next: (response) => {
             Swal.fire({
@@ -73,19 +69,12 @@ export class RegisterComponent {
       });
     }
   }
-  selectedBirthDate: string = '';
-  selectedGender: string = '';
-  dateBirthday!: string;
-  gender!: string;
-
 
   onBirthDateChange(date: string) {
-    this.selectedBirthDate = date;
-    console.log('Data de nascimento recebida:', date);
+    this.registerForm.get('birthDate')?.setValue(date);
   }
 
   onGenderChange(gender: string) {
-    this.selectedGender = gender;
-    console.log('Gênero recebido:', gender);
+    this.registerForm.get('gender')?.setValue(gender);
   }
 }
