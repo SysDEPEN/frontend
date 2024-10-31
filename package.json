@@ -23,6 +23,7 @@
     "@ng-bootstrap/ng-bootstrap": "^17.0.1",
     "bootstrap": "^5.3.3",
     "chart.js": "^3.1.1",
+    "frontend": "file:",
     "mdb-angular-ui-kit": "^7.0.0",
     "ngx-mask": "^16.4.2",
     "rxjs": "~7.8.0",

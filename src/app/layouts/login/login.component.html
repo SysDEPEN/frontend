@@ -9,40 +9,28 @@
     <div class="col-4">
       <div class="card">
         <div class="card-body">
-
-          <h2>Realize o login</h2>
+          <h2>Realizar Login</h2>
           <form>
             <mdb-form-control class="mb-4">
-              <input
-                mdbInput
-                type="text"
-                id="form1Example1"
-                class="form-control"
-                [(ngModel)]="login.document"
-                [ngModelOptions]="{ standalone: true }"
-              />
-              <label mdbLabel class="form-label" for="form1Example1"
-                >CPF/RNE</label
-              >
+              <input mdbInput type="text" id="form1Example1" class="form-control" [(ngModel)]="document"
+                [ngModelOptions]="{ standalone: true }" />
+
+              <label mdbLabel class="form-label" for="form1Example1">CPF ou RNE</label>
+
             </mdb-form-control>
+
             <mdb-form-control class="mb-4">
-              <input
-                mdbInput
-                type="password"
-                id="usuario"
-                class="form-control"
-                [(ngModel)]="login.password"
-                [ngModelOptions]="{ standalone: true }"
-              />
-              <label id="senha" mdbLabel class="form-label" for="form1Example2"
-                >Password</label
-              >
+              <input mdbInput type="password" id="usuario" class="form-control" [(ngModel)]="password"
+                [ngModelOptions]="{ standalone: true }" />
+              <label id="senha" mdbLabel class="form-label" for="form1Example2">Senha</label>
             </mdb-form-control>
           </form>
-          <button type="button" class="btn btn-primary" (click)="logar()">Button</button>
+
+          <button type="button" class="btn btn-primary" (click)="onLogin()">Acessar</button>
         </div>
       </div>
     </div>
+
     <div class="col-4"></div>
   </div>
 </div>

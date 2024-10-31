@@ -38,7 +38,7 @@
           </div>
           <div class="col">
             <mdb-form-control>
-              <label for="citySelect" class="form-label">Selecione o assunto do requerimento</label>
+              <label for="citySelect" class="form-label">Assunto do requerimento</label>
               <select id="citySelect" class="form-select mdb-select" [(ngModel)]="selectReqOptions" name="typeVisit" required>
                 <option value="" disabled selected>Escolha</option>
                 <option *ngFor="let c of reqOptions" [value]="c.label">{{ c.label }}</option>

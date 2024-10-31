@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
-import { Login } from '../../models/login';
+import { LoginService } from '../../services/login/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,16 +12,24 @@ import { Login } from '../../models/login';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  login: Login = new Login();
+ document: string = '';
+ password: string = '';
 
-  router = inject(Router);
+ router = inject(Router);
 
-  logar() {
-    console.log(this.login.document + ' ' + this.login.password)
-    if(this.login.document == 'admin' && this.login.password == 'admin') {
-      this.router.navigate(['home/candidato']);
-    } else {
-      alert('usuário incorreto');
-    }
+ constructor(public login: LoginService) {}
+
+  onLogin() {
+    this.login.handleLogin(this.document, this.password).subscribe({
+      next: (response) => {
+        localStorage.setItem('jwtToken', response.Token)
+        console.log('Login bem-sucedido!')
+        this.router.navigate(['home/']);
+      },
+      error: (error) => {
+        console.error('Erro ao fazer login', error);
+      }
+    });
+
   }
 }
