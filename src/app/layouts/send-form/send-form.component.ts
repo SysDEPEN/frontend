@@ -4,11 +4,13 @@ import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { IBGECityResponse, IBGEUFResponse } from '../../models/IBGEUF';
 import { IBGEService } from '../../services/bge.service';
 import { CommonModule } from '@angular/common';
+import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
+import { formComponent } from '../../components/form1/form1.component';
 
 @Component({
   selector: 'app-send-form',
   standalone: true,
-  imports: [MdbFormsModule, FormsModule, CommonModule],
+  imports: [MdbFormsModule, FormsModule, CommonModule, MdbTabsModule, formComponent],
   templateUrl: './send-form.component.html',
   styleUrls: ['./send-form.component.scss'], // Correção: styleUrls no plural
 })

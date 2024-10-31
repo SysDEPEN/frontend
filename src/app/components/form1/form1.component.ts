@@ -6,7 +6,7 @@ import { IBGEService } from '../../services/bge.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-send-form',
+  selector: 'component-form',
   standalone: true,
   imports: [MdbFormsModule, FormsModule, CommonModule],
   templateUrl: './form1.component.html',
@@ -46,8 +46,6 @@ export class formComponent implements OnInit {
       error: (err) => console.log('Erro ao listar CIDADES:', err),
     });
   }
-
-
 
   submitForm(form: any): void {
     if (form.valid) {
