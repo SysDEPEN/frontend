@@ -1,14 +1,13 @@
 export class reqCamp {
-  nome_visitado!: string;
+  name_visited!: string;
   cpf_rne!: string;
-  tipo_visitacao!: string;
-  telefone!: string;
-  estado!: string;
-  cidade!: string;
-  bairro!: string;
-  rua!: string;
-  numero_casa!: string;
-  requerimento_assunto!: string;
+  type_visitation!: string;
+  cellphone!: string;
+  state!: string;
+  city!: string;
+  district!: string;
+  street!: string;
+  number_house!: string;
   id_user!: {
     id: number
   }

@@ -10,10 +10,23 @@ export class ReqCampService {
   http = inject(HttpClient);
   API = 'http://localhost:8080/api/v1/req_camp';
 
-  constructor() {}
+  constructor() { }
 
   save(res: reqCamp): Observable<reqCamp> {
-    const requerimentoInfo = res;
+    const requerimentoInfo = {
+      name_visited: res.name_visited,
+      cpf_rne: res.cpf_rne,
+      type_visitation: res.type_visitation,
+      cellphone: res.cellphone,
+      state: res.state,
+      city: res.city,
+      district: res.district,
+      street: res.street,
+      number_house: res.number_house,
+      id_user: res.id_user
+    }
+
+    console.log(requerimentoInfo)
     const url = `${this.API}/`;
 
     const headers = new HttpHeaders({

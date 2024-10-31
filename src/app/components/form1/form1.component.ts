@@ -95,11 +95,14 @@ export class formComponent implements OnInit {
   }
 
   submitForm(): void {
+    let dat_user ={
+      id: this.user.id
+    }
     if (this.form.valid) {
       const formData: reqCamp = this.form.value; // Captura os dados do formulário
       const data = {
         ...formData,
-        id_user: this.user.id // Adiciona os dados do usuário ao objeto de envio
+        id_user: dat_user // Adiciona os dados do usuário ao objeto de envio
       };
 
       console.log(data); // Exibe os dados a serem enviados
