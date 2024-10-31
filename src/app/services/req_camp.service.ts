@@ -26,7 +26,7 @@ export class ReqCampService {
       id_user: res.id_user
     }
 
-    console.log(requerimentoInfo)
+    console.log(res)
     const url = `${this.API}/`;
 
     const headers = new HttpHeaders({
