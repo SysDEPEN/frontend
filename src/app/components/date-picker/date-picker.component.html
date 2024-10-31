@@ -10,7 +10,7 @@
       [max]="maxDate"
       required
     />
-    <div *ngIf="form.get('birthDate')?.invalid && form.get('birthDate')?.touched" class="text-danger">
+    <div NgIf="form.get('birthDate')?.invalid && form.get('birthDate')?.touched" class="text-danger">
       Data de nascimento é obrigatória.
     </div>
   </div>
