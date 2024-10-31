@@ -21,8 +21,8 @@ export class IBGEService {
     return this.http.get<IBGEUFResponse[]>(url); // Retorno correto da requisição
   }
 
-  listAllCities(selectedUf: string): Observable<IBGECityResponse[]> {
-    const url = `${this.API}/estados${selectedUf}/municipios`;
+  listAllCities(selectedUf: any): Observable<IBGECityResponse[]> {
+    const url = `${this.API}/estados/${selectedUf}/municipios`;
     return this.http.get<IBGECityResponse[]>(url);
   }
 }

@@ -1,7 +1,9 @@
 export class IBGEUFResponse {
+  id!:number;
   sigla!: string;
 }
 
 export class IBGECityResponse {
-  name!: string;
+  id!: number;
+  nome!: string;
 }

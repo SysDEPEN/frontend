@@ -38,24 +38,22 @@
             >Selecione um Estado</label
           >
           <select
-            id="ufSelect"
-            class="form-select mdb-select"
-            [(ngModel)]="selectedUF"
-            name="uf"
-            required
-          >
-            <option value="" disabled selected>Escolha um Estado</option>
-            @for (c of UF; track $index) {
-            <option [value]="c">{{ c.sigla }}</option>
-            }
-          </select>
+          id="ufSelect"
+          class="form-select mdb-select"
+          [(ngModel)]="selectedUF"
+          (ngModelChange)="selectedUF && listAllCities(selectedUF)"
+          name="uf"
+          required
+        >
+          <option value="" disabled selected>Escolha um Estado</option>
+          <option *ngFor="let c of UF" [value]="c.sigla">{{ c.sigla }}</option>
+        </select>
+
 
           <div class="text-danger mt-1">Selecione um Estado!</div>
         </mdb-form-control>
         <mdb-form-control class="mb-4">
-          <label for="citySelect" class="form-label"
-            >Selecione a Cidade</label
-          >
+          <label for="citySelect" class="form-label">Selecione a Cidade</label>
           <select
             id="citySelect"
             class="form-select mdb-select"
@@ -64,18 +62,16 @@
             required
           >
             <option value="" disabled selected>Escolha uma Cidade</option>
-            @for (cy of cities; track $index) {
-            <option [value]="cy">{{ cy.name }}</option>
-            }
+            <option *ngFor="let c of cities" [value]="c.nome">{{ c.nome }}</option>
           </select>
-
-          <div class="text-danger mt-1">Selecione um Estado!</div>
+          <div class="text-danger mt-1">Selecione uma cidade!</div>
         </mdb-form-control>
+
 
         <!-- Text input -->
         <mdb-form-control class="mb-4">
           <input mdbInput type="text" id="form6Example4" class="form-control" />
-          <label mdbLabel class="form-label" for="form6Example4">Address</label>
+          <label mdbLabel class="form-label" for="form6Example4">Rua</label>
         </mdb-form-control>
 
         <!-- Email input -->

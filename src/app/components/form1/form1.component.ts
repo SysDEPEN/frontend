@@ -9,10 +9,10 @@ import { CommonModule } from '@angular/common';
   selector: 'app-send-form',
   standalone: true,
   imports: [MdbFormsModule, FormsModule, CommonModule],
-  templateUrl: './send-form.component.html',
-  styleUrls: ['./send-form.component.scss'], // Correção: styleUrls no plural
+  templateUrl: './form1.component.html',
+  styleUrls: ['./form1.component.scss'], // Correção: styleUrls no plural
 })
-export class SendFormComponent implements OnInit {
+export class formComponent implements OnInit {
   UF: IBGEUFResponse[] = []; // Lista das UFs
   selectedUF: string | null = null; // Cidade selecionada
   currentUf!: IBGEUFResponse;
