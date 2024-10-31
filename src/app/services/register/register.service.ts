@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +35,10 @@ export class RegisterService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    return this.http.post(`${this.API}/save`, registerData, { headers });
+    return this.http.post(`${this.API}/save`, registerData, { headers }).pipe(
+      catchError((error) => {
+        return throwError(() => error.error);
+      })
+    );
   }
 }
