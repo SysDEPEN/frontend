@@ -25,30 +25,7 @@ export class SendFormComponent implements OnInit {
   constructor(private ibgeService: IBGEService) {}
 
   ngOnInit(): void {
-    this.listAllUFS();
   }
-
-  listAllUFS(): void {
-    this.ibgeService.listAllUFs().subscribe({
-      next: (ufList) => {
-        this.UF = ufList;
-        this.listAllCities(this.selectedUF)
-        console.log(ufList); // Para depuração
-      },
-      error: (err) => console.error('Erro ao listar UFs:', err), // Tratamento de erro
-    });
-  }
-
-  listAllCities(sigla: string | null): void {
-    this.ibgeService.listAllCities(sigla).subscribe({
-      next: (cityList) => {
-        this.cities = cityList;
-        console.log(cityList);
-      },
-      error: (err) => console.log('Erro ao listar CIDADES:', err),
-    });
-  }
-
 
 
   submitForm(form: any): void {
