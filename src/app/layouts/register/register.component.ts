@@ -49,7 +49,7 @@ export class RegisterComponent {
               icon: 'success',
               confirmButtonText: 'Seguir para o Login',
             });
-            this.router.navigate(['/login']);
+            this.router.navigate(['/sign-in']);
           },
           error: (error) => {
             Swal.fire({
