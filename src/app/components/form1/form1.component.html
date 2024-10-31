@@ -1,13 +1,13 @@
-<div class="col-9 w-100 d-flex justify-content-center align-items-center ">
+<div class="col-9 w-100 main">
   <div class="card">
     <div class="card-body">
       <h2>Informe os seus dados</h2>
-      <form>
+      <form [formGroup]="sendForm" (ngSubmit)="submitForm()">
         <!-- 2 column grid layout with text inputs for the first and last names -->
         <div class="row mb-4">
           <div class="col">
             <mdb-form-control>
-              <input mdbInput type="text" id="form6Example1" class="form-control" />
+              <input mdbInput type="text" id="name" class="form-control" />
               <label mdbLabel class="form-label" for="form6Example1">Nome do visitado</label>
             </mdb-form-control>
           </div>
@@ -16,6 +16,33 @@
               <input mdbInput type="text" id="form6Example2" class="form-control"
                 [mask]="documentType === 'RNE' ? '99.999.999.999' : '00.000.000-0'" />
               <label mdbLabel class="form-label" for="form6Example2">RG/RNE do visitado</label>
+            </mdb-form-control>
+          </div>
+        </div>
+
+        <mdb-form-control class="form-outline mb-4">
+          <input mask="(00) 0 0000 0000" mdbInput type="text" [(ngModel)]="telefoneValue"
+          name="telefone" class="form-control" />
+          <label mdbLabel class="form-label" for="form6Example6">Phone</label>
+        </mdb-form-control>
+
+        <div class="row mb-4">
+          <div class="col">
+            <mdb-form-control>
+              <label for="citySelect" class="form-label">Selecione o tipo de visitação</label>
+              <select id="citySelect" class="form-select mdb-select" [(ngModel)]="selectedTypeVisit" name="typeVisit" required>
+                <option value="" disabled selected>Escolha</option>
+                <option *ngFor="let c of typeVisit" [value]="c.label">{{ c.label }}</option>
+              </select>
+            </mdb-form-control>
+          </div>
+          <div class="col">
+            <mdb-form-control>
+              <label for="citySelect" class="form-label">Selecione o assunto do requerimento</label>
+              <select id="citySelect" class="form-select mdb-select" [(ngModel)]="selectReqOptions" name="typeVisit" required>
+                <option value="" disabled selected>Escolha</option>
+                <option *ngFor="let c of reqOptions" [value]="c.label">{{ c.label }}</option>
+              </select>
             </mdb-form-control>
           </div>
         </div>
@@ -39,39 +66,24 @@
           </select>
           <div class="text-danger mt-1">Selecione uma cidade!</div>
         </mdb-form-control>
+
+
+
+
         <mdb-form-control class="mb-4">
-          <label for="citySelect" class="form-label">Selecione o tipo de visitação</label>
-          <select id="citySelect" class="form-select mdb-select" [(ngModel)]="selectedCity" name="city" required>
-            <option value="" disabled selected>Escolha</option>
-            <option *ngFor="let c of cities" [value]="c.nome">{{ c.nome }}</option>
-          </select>
-          <div class="text-danger mt-1">Selecione o tipo de visitação!</div>
+          <input mdbInput type="text" id="form6Example4" class="form-control" />
+          <label mdbLabel class="form-label" for="form6Example4">Bairro</label>
         </mdb-form-control>
-
-
-        <!-- Text input -->
         <mdb-form-control class="mb-4">
           <input mdbInput type="text" id="form6Example4" class="form-control" />
           <label mdbLabel class="form-label" for="form6Example4">Rua</label>
         </mdb-form-control>
-
-        <!-- Email input -->
         <mdb-form-control class="mb-4">
-          <input mdbInput type="email" id="form6Example5" class="form-control" />
-          <label mdbLabel class="form-label" for="form6Example5">Email</label>
+          <input mdbInput type="text" id="form6Example4" class="form-control" />
+          <label mdbLabel class="form-label" for="form6Example4">Número</label>
         </mdb-form-control>
 
-        <!-- Number input -->
-        <mdb-form-control class="form-outline mb-4">
-          <input mdbInput type="number" id="form6Example6" class="form-control" />
-          <label mdbLabel class="form-label" for="form6Example6">Phone</label>
-        </mdb-form-control>
 
-        <!-- Message input -->
-        <mdb-form-control class="form-outline mb-4">
-          <textarea mdbInput class="form-control" id="form6Example7" rows="4"></textarea>
-          <label mdbLabel class="form-label" for="form6Example7">Additional information</label>
-        </mdb-form-control>
 
         <!-- Checkbox -->
         <!-- <div class="form-check d-flex justify-content-center mb-4">

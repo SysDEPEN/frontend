@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { IBGECityResponse, IBGEUFResponse } from '../../models/IBGEUF';
 import { IBGEService } from '../../services/bge.service';
@@ -9,12 +9,14 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 @Component({
   selector: 'component-form',
   standalone: true,
-  imports: [MdbFormsModule, FormsModule, CommonModule, NgxMaskDirective ],
+  imports: [MdbFormsModule, FormsModule, CommonModule, NgxMaskDirective, ReactiveFormsModule],
   templateUrl: './form1.component.html',
   styleUrls: ['./form1.component.scss'],
   providers: [provideNgxMask({})]
 })
 export class formComponent implements OnInit {
+  sendForm: FormGroup;
+
   UF: IBGEUFResponse[] = []; // Lista das UFs
   selectedUF: string | null = null; // Cidade selecionada
   currentUf!: IBGEUFResponse;
@@ -22,11 +24,33 @@ export class formComponent implements OnInit {
   cities: IBGECityResponse[] = []; // Lista de Cidades
   selectedCity: string | null = null;
 
+  typeVisit: any = [{ label: "Parentes", value: "Parentes" },
+  { label: "Amigos", value: "Amigos" },
+  { label: "Visita da igreja", value: "Visita da igreja" },]
+
+  reqOptions = [
+    { label: "Visita social", value: "Visita social" },
+    { label: "Visita assistida", value: "Visita assistida" },
+    { label: "Visita intima", value: "Visita intima" },
+  ];
+
+  selectedTypeVisit!: string;
+  selectReqOptions!: string;
+
+  telefoneValue: string = '';
 
   document: string = '';
   documentType: 'RNE' | 'RG' = 'RG';
 
-  constructor(private ibgeService: IBGEService) {}
+  constructor(private ibgeService: IBGEService) {
+    this.sendForm = new FormGroup({
+      name: new FormControl('', Validators.required),
+      document: new FormControl('', Validators.required),
+      telefone: new FormControl('', Validators.required),
+      typeVisit: new FormControl('', Validators.required),
+
+    })
+  }
 
   ngOnInit(): void {
     this.listAllUFS();
@@ -53,11 +77,7 @@ export class formComponent implements OnInit {
     });
   }
 
-  submitForm(form: any): void {
-    if (form.valid) {
-      console.log('Estado selecionado:', this.selectedUF);
-    } else {
-      console.log('Seleção inválida.');
-    }
+  submitForm(): void {
+
   }
 }
