@@ -35,6 +35,6 @@ export class ReqCampService {
         'BvPHGM8C0ia4uOuxxqPD5DTbWC9F9TWvPStp3pb7ARo0oK2mJ3pd3YG4lxA9i8bj6OTbadwezxgeEByY',
     });
     console.log(requerimentoInfo)
-    return this.http.post<reqCamp>(url, requerimentoInfo, { headers });
+    return this.http.post<reqCamp>(url + 'save', requerimentoInfo, { headers });
   }
 }
