@@ -13,7 +13,7 @@ export class ReqCampService {
   constructor() { }
 
   save(res: reqCamp): Observable<reqCamp> {
-    const requerimentoInfo = {
+    const requerimentoInfo: reqCamp = {
       name_visited: res.name_visited,
       cpf_rne: res.cpf_rne,
       type_visitation: res.type_visitation,
