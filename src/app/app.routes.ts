@@ -8,6 +8,7 @@ import { HomePageComponent } from './layouts/home-page/home-page.component';
 import { SobreComponent } from './layouts/sobre/sobre.component';
 import { ContatosComponent } from './layouts/contatos/contatos.component';
 import { TabelaSolicitantesComponent } from './components/tabela-solicitantes/tabela-solicitantes.component';
+import { DocumentosSolicitantesComponent } from './layouts/documentos-solicitantes/documentos-solicitantes.component';
 
 
 export const routes: Routes = [
@@ -19,7 +20,8 @@ export const routes: Routes = [
   { path: 'send-document', component: SendDocumentsComponent },
   { path: 'contatos', component: ContatosComponent }, 
   { path: 'sobre', component: SobreComponent }, 
-  { path: 'tabela-solicitantes', component: TabelaSolicitantesComponent}
+  { path: 'tabela-solicitantes', component: TabelaSolicitantesComponent},
+  { path: 'documento-solicitantes', component: DocumentosSolicitantesComponent}
 ];
 
 @NgModule({
