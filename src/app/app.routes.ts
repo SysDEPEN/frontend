@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { HomePageComponent } from './layouts/home-page/home-page.component';
 import { SobreComponent } from './layouts/sobre/sobre.component';
 import { ContatosComponent } from './layouts/contatos/contatos.component';
+import { SendForm2Component } from './layouts/send-form2/send-form2.component';
 
 
 export const routes: Routes = [
@@ -15,9 +16,10 @@ export const routes: Routes = [
   { path: 'sign-in', component: LoginComponent },
   { path: 'sign-up', component: RegisterComponent },
   { path: 'send-form', component: SendFormComponent },
+  { path: 'send-form2', component: SendForm2Component },
   { path: 'send-document', component: SendDocumentsComponent },
-  { path: 'contatos', component: ContatosComponent }, 
-  { path: 'sobre', component: SobreComponent }, 
+  { path: 'contatos', component: ContatosComponent },
+  { path: 'sobre', component: SobreComponent },
 ];
 
 @NgModule({
