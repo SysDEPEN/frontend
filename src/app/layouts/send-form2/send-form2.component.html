@@ -1,8 +1,12 @@
-<div class="col-9 w-100 main">
-  <div class="card">
-    <div class="card-body">
-      <label class="form-label" for="customFile">Default file input example</label>
-      <input type="file" class="form-control" id="customFile" />
+<div class="container">
+  <h2>Upload de Arquivos</h2>
+  <form (ngSubmit)="onUpload()">
+
+    <div class="form-group">
+      <label for="files">RG</label>
+      <input type="file" id="files" class="form-control" (change)="onFileSelected($event)" multiple>
     </div>
-  </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+  </form>
 </div>
