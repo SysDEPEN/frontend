@@ -9,6 +9,8 @@ import { SobreComponent } from './layouts/sobre/sobre.component';
 import { ContatosComponent } from './layouts/contatos/contatos.component';
 import { TabelaSolicitantesComponent } from './components/tabela-solicitantes/tabela-solicitantes.component';
 import { DocumentosSolicitantesComponent } from './layouts/documentos-solicitantes/documentos-solicitantes.component';
+import { SendForm2Component } from './layouts/send-form2/send-form2.component';
+
 
 
 export const routes: Routes = [
@@ -17,11 +19,14 @@ export const routes: Routes = [
   { path: 'sign-in', component: LoginComponent },
   { path: 'sign-up', component: RegisterComponent },
   { path: 'send-form', component: SendFormComponent },
+  { path: 'send-form2', component: SendForm2Component },
   { path: 'send-document', component: SendDocumentsComponent },
   { path: 'contatos', component: ContatosComponent }, 
   { path: 'sobre', component: SobreComponent }, 
   { path: 'tabela-solicitantes', component: TabelaSolicitantesComponent},
-  { path: 'documento-solicitantes', component: DocumentosSolicitantesComponent}
+  { path: 'documento-solicitantes', component: DocumentosSolicitantesComponent},
+  { path: 'contatos', component: ContatosComponent },
+  { path: 'sobre', component: SobreComponent },
 ];
 
 @NgModule({
