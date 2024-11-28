@@ -20,11 +20,17 @@ export class LoginComponent {
  constructor(public login: LoginService) {}
 
   onLogin() {
-    this.login.handleLogin(this.document, this.password).subscribe({
+    var login = {
+      document: this.document,
+      password: this.password
+    }
+    this.login.handleLogin(login).subscribe({
       next: (response) => {
         localStorage.setItem('jwtToken', response.Token)
         console.log('Login bem-sucedido!')
-        this.router.navigate(['home/']);
+        this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+          this.router.navigate([this.router.url]);
+        });
       },
       error: (error) => {
         console.error('Erro ao fazer login', error);

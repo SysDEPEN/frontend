@@ -17,8 +17,7 @@ export class LoginService {
 
   constructor() { }
 
-  handleLogin(document: string, password: string): Observable<any> {
-    const login = { document, password }
+  handleLogin(login: Login): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'secret-key': 'sua_secret_key_aqui' // Insira a chave aqui

@@ -115,9 +115,9 @@ export class formComponent implements OnInit {
             title: 'Sucesso!',
             text: 'Cadastro realizado com sucesso',
             icon: 'success',
-            confirmButtonText: 'Seguir para o Login',
+            confirmButtonText: 'Seguir para o envio de documentos',
           });
-          this.router.navigate(['/send-document']);
+          this.router.navigate(['/send-form2']);
         },
         error: (error) => {
           console.log(error);

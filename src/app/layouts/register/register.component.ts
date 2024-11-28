@@ -34,13 +34,14 @@ export class RegisterComponent {
       birthDate: new FormControl('', Validators.required),
       gender: new FormControl('', Validators.required),
     });
+    console.log(this.registerForm)
   }
 
   onRegister() {
     if (this.registerForm.valid) {
-      const { name, document, email, password, birthDate, gender } = this.registerForm.value;
+      const userCurrent = this.registerForm.value;
       this.register
-        .handleRegister(name, document, email, password, birthDate, gender)
+        .handleRegister(userCurrent)
         .subscribe({
           next: (response) => {
             Swal.fire({
