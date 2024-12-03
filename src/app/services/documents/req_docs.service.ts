@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 import { ReqDocs } from '../../models/req_docs';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { ReqDocs } from '../../models/req_docs';
 })
 export class ReqDocsService {
   http = inject(HttpClient);
-  API = 'http://localhost:8080/api/v1/documents';
+  API = environment.API_URI + 'documents';
 
   constructor() { }
 

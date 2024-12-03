@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
-import { LoginService } from '../../services/login/login.service';
 import { Router } from '@angular/router';
+import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
+import { LoginService } from '../../auth/login.service';
 
 @Component({
   selector: 'app-login',
@@ -12,30 +12,33 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
- document: string = '';
- password: string = '';
+  document: string = '';
+  password: string = '';
 
- router = inject(Router);
+  router = inject(Router);
 
- constructor(public login: LoginService) {}
+  constructor(public login: LoginService) {
+    this.login.removerToken();
+  }
 
   onLogin() {
     var login = {
       document: this.document,
-      password: this.password
-    }
-    this.login.handleLogin(login).subscribe({
+      password: this.password,
+    };
+
+    this.login.logar(login).subscribe({
       next: (response) => {
-        localStorage.setItem('jwtToken', response.Token)
-        console.log('Login bem-sucedido!')
-        this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
-          this.router.navigate([this.router.url]);
-        });
+        if (response) this.login.addToken(response);
+        this.router
+          .navigateByUrl('/home', { skipLocationChange: true })
+          .then(() => {
+            this.router.navigate([this.router.url]);
+          });
       },
       error: (error) => {
         console.error('Erro ao fazer login', error);
-      }
+      },
     });
-
   }
 }

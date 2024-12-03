@@ -1,40 +1,49 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { Register } from '../../models/register';
-
+import { environment } from '../../../environments/environment';
+import { Usuario } from '../../auth/usuario';
 @Injectable({
   providedIn: 'root',
 })
 export class RegisterService {
-  private readonly API = 'http://localhost:8080/api/v1/users';
+  private readonly API = environment.API_URI + 'usuario';
   private http = inject(HttpClient);
 
-  constructor() { }
+  constructor() {}
 
-  handleRegister(res: Register): Observable<Register> {
+  findUserById(id: number): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(`${this.API}/findById/${id}`).pipe(
+      catchError((error) => {
+        return throwError(() => error.error);
+      })
+    );
+  }
+
+  handleRegister(res: Usuario): Observable<string> {
     const role: number = 0;
-    const registerData: Register = {
+    const registerData: Usuario = {
       name: res.name,
       document: res.document,
       email: res.email,
       password: res.password,
       gender: res.gender,
-      data_birth: res.data_birth,
+      date_born: res.date_born,
       role,
-      created_at: new Date,
-      updated_at: new Date,
+      created_at: new Date(),
+      updated_at: new Date(),
+      protocols: []
     };
 
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'secret-key':
-        'BvPHGM8C0ia4uOuxxqPD5DTbWC9F9TWvPStp3pb7ARo0oK2mJ3pd3YG4lxA9i8bj6OTbadwezxgeEByY',
-    });
-    return this.http.post<Register>(`${this.API}/save`, registerData, { headers }).pipe(
-      catchError((error) => {
-        return throwError(() => error.error);
+
+    return this.http
+      .post<string>(`${this.API}/save`, registerData, {
+        responseType: 'text' as 'json',
       })
-    );
+      .pipe(
+        catchError((error) => {
+          return throwError(() => error.error);
+        })
+      );
   }
 }
