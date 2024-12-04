@@ -70,7 +70,7 @@ export class formComponent implements OnInit {
 
   ngOnInit(): void {
     this.listAllUFS();
-    const storedUser = localStorage.getItem('jwtToken');
+    const storedUser = localStorage.getItem('token');
     if (storedUser) {
       const decodedToken = jwtDecode(storedUser);
       this.user = decodedToken;
@@ -109,7 +109,20 @@ export class formComponent implements OnInit {
 
       console.log(data); // Exibe os dados a serem enviados
 
-      this.req_campService.save(data).subscribe({
+      const requerimentoInfo: reqCamp = {
+        name_visited: data.name_visited,
+        cpf_rne: data.cpf_rne,
+        type_visitation: data.type_visitation,
+        cellphone: data.cellphone,
+        state: data.state,
+        city: data.city,
+        district: data.district,
+        street: data.street,
+        number_house: data.number_house,
+      };
+
+
+      this.req_campService.save(requerimentoInfo).subscribe({
         next: (response) => {
           Swal.fire({
             title: 'Sucesso!',

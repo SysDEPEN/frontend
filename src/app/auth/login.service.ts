@@ -2,15 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { jwtDecode, JwtPayload } from "jwt-decode";
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 import { Login } from './login';
 import { Usuario } from './usuario';
-
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
   http = inject(HttpClient);
-  API = 'http://localhost:8080/api/v1/login/logar';
+  API = `${environment.API_URI}login/logar`;
 
   constructor() {}
 

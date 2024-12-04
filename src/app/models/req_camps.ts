@@ -8,9 +8,6 @@ export class reqCamp {
   district!: string;
   street!: string;
   number_house!: string;
-  id_user!: {
-    id: number
-  }
 }
 
 // {
