@@ -1,41 +1,41 @@
 export class Protocols {
-    id!: number; // Adicione o ID, conforme retornado pelo JSON
-    created_at!: string; // Mapeia para "created_at" no JSON
-    updated_at!: string; // Mapeia para "updated_at" no JSON
-    user!: User; // Usuário associado
-    reqInfo!: RequerimentoInfo; // Informações do requerimento (req_info no JSON)
-    doc!: Document | null; // Documento associado
-    admin!: Admin | null; // Administrador associado
-    status!: number; // Status do protocolo
-  }
+  id!: number; // ID do protocolo
+  created_at!: string; // Data de criação do protocolo
+  updated_at!: string; // Data de atualização do protocolo
+  user!: User; // Usuário associado ao protocolo
+  reqInfo!: RequerimentoInfo; // Informações do requerimento
+  doc!: Document | null; // Documento associado (se houver)
+  admin!: Admin | null; // Administrador associado (se houver)
+  status!: number; // Status do protocolo
+}
 
-  export class User {
-    id!: number;
-    name!: string;
-    document!: string;
-    email!: string;
-  }
+export class User {
+  id!: number;
+  name!: string; // Nome do visitante
+  document!: string; // Documento do visitante (CPF, RG, etc.)
+  email!: string; // E-mail do visitante
+}
 
-  export class RequerimentoInfo {
-    id!: number;
-    nameVisited!: string; // Altere para "name_visited" conforme o JSON
-    cpfRne!: string; // Altere para "cpf_rne" conforme o JSON
-    typeVisitation!: string; // Altere para "type_visitation" conforme o JSON
-    cellphone!: string;
-    state!: string;
-    city!: string;
-    district!: string;
-    street!: string;
-    numberHouse!: string; // Altere para "number_house" conforme o JSON
-    subject!: string | null;
-  }
+export class RequerimentoInfo {
+  id!: number;
+  nameVisited!: string; // Nome do visitado
+  cpfRne!: string; // CPF ou RNE do visitado
+  typeVisitation!: string; // Tipo de visitação
+  cellphone!: string; // Telefone do visitante
+  state!: string; // Estado
+  city!: string; // Cidade
+  district!: string; // Bairro
+  street!: string; // Rua
+  numberHouse!: string; // Número da casa
+  subject!: string | null; // Assunto da visita
+}
 
-  export class Document {
-    title!: string;
-    fileUrl!: string;
-  }
+export class Document {
+  title!: string; // Título do documento
+  fileUrl!: string; // URL do arquivo
+}
 
-  export class Admin {
-    name!: string;
-    role!: string;
-  }
+export class Admin {
+  name!: string; // Nome do administrador
+  role!: string; // Papel do administrador
+}

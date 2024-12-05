@@ -27,9 +27,6 @@ export class TabelaSolicitantesComponent implements OnInit {
       (data) => {
         this.protocols = data;
         this.filteredProtocols = data; // Inicialmente, todos os protocolos são exibidos
-        console.log(data.map(d => {
-          console.log(d.created_at)
-        }))
       },
       (error) => {
         console.error('Erro ao carregar protocolos:', error);
@@ -38,6 +35,7 @@ export class TabelaSolicitantesComponent implements OnInit {
   }
 
   handleProtocol(protocol: Protocols): void {
+    console.log('Protocol enviado:', protocol); // Log do protocolo
     this.router.navigate(['/documento-solicitantes'], { state: { protocol } });
   }
 
