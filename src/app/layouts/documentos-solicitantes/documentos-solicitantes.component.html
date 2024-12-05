@@ -1,55 +1,33 @@
 <div class="container">
     <div class="section1 mtop">
-        <div class="section2 mtop">
-            <div class="mtop">
-                <a>Nome do visitante</a>
-                <input class="form-control inputbar bg-input" type="text">
-            </div>
-            <div class="mtop">
-                <a>CPF do visitante</a>
-                <input class="form-control inputbar bg-input" type="text">
-            </div>
-            <div class="mtop">
-                <a>Nome do visitado</a>
-                <input class="form-control inputbar bg-input" type="text">
-            </div>
-
+      <div class="section2 mtop">
+        <div class="mtop">
+          <a>Nome do visitante</a>
+          <input class="form-control inputbar bg-input" type="text" [value]="protocol?.user?.name || ''" readonly />
         </div>
-        <div class="section2 mtop">
-            <div class="mtop">
-                <a>Protocolo</a>
-                <input class="form-control inputbar bg-input" type="text">
-            </div>
-            <div class="mtop">
-                <a>Telefone do visitante</a>
-                <input class="form-control inputbar bg-input" type="text">
-            </div>
-            <div class="mtop">
-                <a>CPF do visitado</a>
-                <input class="form-control inputbar bg-input" type="text">
-            </div>
+        <div class="mtop">
+          <a>CPF do visitante</a>
+          <input class="form-control inputbar bg-input" type="text" [value]="protocol?.reqInfo?.cpfRne || ''" readonly />
         </div>
-    </div>
-
-    <div>
-        <h4 class="titulo mtop2">Visualizar documentos</h4>
-
-        <div class="section1">
-            <div class="section2">
-                <button class="btn documentButton mtop">Visualizar documento</button>
-                <button class="btn documentButton mtop">Visualizar documento</button>
-                <button class="btn documentButton mtop">Visualizar documento</button>
-            </div>
-            <div class="section2">
-                <button class="btn documentButton mtop">Visualizar documento</button>
-                <button class="btn documentButton mtop">Visualizar documento</button>
-                <button class="btn documentButton mtop">Visualizar documento</button>
-            </div>
+        <div class="mtop">
+          <a>Nome do visitado</a>
+          <input class="form-control inputbar bg-input" type="text" [value]="protocol?.reqInfo?.nameVisited || ''" readonly />
         </div>
+      </div>
+      <div class="section2 mtop">
+        <div class="mtop">
+          <a>Protocolo</a>
+          <input class="form-control inputbar bg-input" type="text" [value]="protocol?.id || ''" readonly />
+        </div>
+        <div class="mtop">
+          <a>Telefone do visitante</a>
+          <input class="form-control inputbar bg-input" type="text" [value]="protocol?.reqInfo?.cellphone || ''" readonly />
+        </div>
+        <div class="mtop">
+          <a>CPF do visitado</a>
+          <input class="form-control inputbar bg-input" type="text" [value]="protocol?.reqInfo?.cpfRne || ''" readonly />
+        </div>
+      </div>
     </div>
-
-    <div class="section1 mtop2">
-        <button class="btn btn-success">Aprovar</button>
-        <button class="btn btn-danger">Rejeitar</button>
-    </div>
-</div>
+  </div>
+  
