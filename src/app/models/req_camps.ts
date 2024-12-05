@@ -1,4 +1,5 @@
 export class reqCamp {
+  id!: number | null;
   name_visited!: string;
   cpf_rne!: string;
   type_visitation!: string;

@@ -7,7 +7,6 @@ import { NgModule } from '@angular/core';
 import { HomePageComponent } from './layouts/home-page/home-page.component';
 import { SobreComponent } from './layouts/sobre/sobre.component';
 import { ContatosComponent } from './layouts/contatos/contatos.component';
-import { TabelaSolicitantesComponent } from './components/tabela-solicitantes/tabela-solicitantes.component';
 import { DocumentosSolicitantesComponent } from './layouts/documentos-solicitantes/documentos-solicitantes.component';
 import { SendForm2Component } from './layouts/send-form2/send-form2.component';
 import { StatusCardComponent } from './components/status-protocol/status-protocol.component';

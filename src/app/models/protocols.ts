@@ -1,0 +1,46 @@
+import { Observable } from "rxjs";
+import { Usuario } from "../auth/usuario";
+import { Register } from "./register";
+import { reqCamp } from "./req_camps";
+
+export class Protocols {
+    id?: number; // Adicione o ID, conforme retornado pelo JSON
+    created_at!: string; // Mapeia para "created_at" no JSON
+    updated_at!: string; // Mapeia para "updated_at" no JSON
+    user!: Usuario | any; // Usuário associado
+    reqInfo!: reqCamp | any; // Informações do requerimento (req_info no JSON)
+    doc!: Document | null; // Documento associado
+    admin!: Admin | null; // Administrador associado
+    status!: number; // Status do protocolo
+  }
+
+  // export class User {
+  //   id!: number;
+  //   name!: string;
+  //   document!: string;
+  //   email!: string;
+  // }
+
+  export class RequerimentoInfo {
+    id!: number;
+    nameVisited!: string; // Altere para "name_visited" conforme o JSON
+    cpfRne!: string; // Altere para "cpf_rne" conforme o JSON
+    typeVisitation!: string; // Altere para "type_visitation" conforme o JSON
+    cellphone!: string;
+    state!: string;
+    city!: string;
+    district!: string;
+    street!: string;
+    numberHouse!: string; // Altere para "number_house" conforme o JSON
+    subject!: string | null;
+  }
+
+  export class Document {
+    title!: string;
+    fileUrl!: string;
+  }
+
+  export class Admin {
+    name!: string;
+    role!: string;
+  }

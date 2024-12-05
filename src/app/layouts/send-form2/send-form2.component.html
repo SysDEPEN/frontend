@@ -1,10 +1,13 @@
 <div class="container">
   <h2>Upload de Arquivos</h2>
-  <form (ngSubmit)="onUpload()">
+  <form [formGroup]="form" (ngSubmit)="handleRegisterProtocols()">
 
     <div class="form-group">
       <label for="files">RG</label>
       <input type="file" id="files" class="form-control" (change)="onFileSelected($event)" multiple>
+      <span class="text-warning">
+        Não precisa adicionar documentos por enquanto, apenas vá no botão enviar para mandar os seu requerimento
+      </span>
     </div>
 
     <button type="submit" class="btn btn-primary mt-3">Enviar</button>

@@ -1,0 +1,29 @@
+<div>
+  <h3 class="mtop mleft">Solicitações Pendentes</h3>
+
+  <!-- Barra de pesquisa (logo abaixo do título) -->
+  <app-search-bar (search)="onSearch($event)"></app-search-bar> <!-- Aqui você faz o binding do evento para chamar a função onSearch -->
+
+  <table class="table table-striped mt-2">
+    <thead>
+      <tr>
+        <th scope="col">Nome do Solicitante</th>
+        <th scope="col">Protocolo</th>
+        <th scope="col">Data de Envio</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let protocol of filteredProtocols">
+        <td>{{ protocol.user.name }}</td>
+        <td>{{ protocol.id }}</td>
+        <td>{{ formatDate(protocol.created_at) }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="handleProtocol(protocol)">
+            Detalhes
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

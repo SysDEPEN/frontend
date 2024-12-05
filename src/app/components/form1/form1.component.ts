@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { jwtDecode } from 'jwt-decode';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
@@ -49,10 +49,12 @@ export class formComponent implements OnInit {
 
   user: any;
 
+
+
   constructor(
     private ibgeService: IBGEService,
     private req_campService: ReqCampService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
   ) {
     // Inicialize o FormGroup
     this.form = new FormGroup({
@@ -110,6 +112,7 @@ export class formComponent implements OnInit {
       console.log(data); // Exibe os dados a serem enviados
 
       const requerimentoInfo: reqCamp = {
+        id: null,
         name_visited: data.name_visited,
         cpf_rne: data.cpf_rne,
         type_visitation: data.type_visitation,
@@ -130,7 +133,8 @@ export class formComponent implements OnInit {
             icon: 'success',
             confirmButtonText: 'Seguir para o envio de documentos',
           });
-          this.router.navigate(['/send-form2']);
+          // this.form2.OnSubmit(response.id)
+          this.router.navigate(['/send-form2'], { state: { data: response.id } });
         },
         error: (error) => {
           console.log(error);
