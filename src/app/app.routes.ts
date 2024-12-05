@@ -10,6 +10,7 @@ import { ContatosComponent } from './layouts/contatos/contatos.component';
 import { TabelaSolicitantesComponent } from './components/tabela-solicitantes/tabela-solicitantes.component';
 import { DocumentosSolicitantesComponent } from './layouts/documentos-solicitantes/documentos-solicitantes.component';
 import { SendForm2Component } from './layouts/send-form2/send-form2.component';
+import { StatusCardComponent } from './components/status-protocol/status-protocol.component';
 
 
 
@@ -27,6 +28,7 @@ export const routes: Routes = [
   { path: 'documento-solicitantes', component: DocumentosSolicitantesComponent},
   { path: 'contatos', component: ContatosComponent },
   { path: 'sobre', component: SobreComponent },
+  { path: 'status', component: StatusCardComponent},
 ];
 
 @NgModule({

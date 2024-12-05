@@ -1,0 +1,14 @@
+
+<div class="card">
+    <h3>Requerimento de visitação Nº {{ protocol?.id }}</h3>
+    <p *ngIf="protocol">Seu documento está em <strong>{{ protocol?.status }}</strong>.</p>
+    <p *ngIf="!protocol">Carregando informações...</p>
+  
+    <div class="steps">
+      <div *ngFor="let status of statuses" class="step" [class.completed]="status.completed">
+        <div class="circle">{{ status.step }}</div>
+        <p>{{ status.label }}</p>
+      </div>
+    </div>
+  </div>
+  
