@@ -51,7 +51,7 @@ export class TabelaSolicitantesComponent implements OnInit {
   onSearch(searchTerm: string): void {
     this.filteredProtocols = this.protocols.filter(protocol =>
       protocol.user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      protocol.id.toString().includes(searchTerm) // Filtra pelo nome ou número do protocolo
+      (protocol.id !== undefined && protocol.id.toString().includes(searchTerm)) // Filtra pelo nome ou número do protocolo
     );
   }
 }
