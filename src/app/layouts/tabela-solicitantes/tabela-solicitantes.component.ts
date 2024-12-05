@@ -8,7 +8,7 @@ import { SearchBarComponent } from '../../components/search-bar/search-bar.compo
 @Component({
   selector: 'app-tabela-solicitantes',
   standalone: true,
-  imports: [SearchBarComponent],
+  imports: [SearchBarComponent, CommonModule],
   templateUrl: './tabela-solicitantes.component.html',
   styleUrls: ['./tabela-solicitantes.component.scss'],
 })
@@ -27,6 +27,9 @@ export class TabelaSolicitantesComponent implements OnInit {
       (data) => {
         this.protocols = data;
         this.filteredProtocols = data; // Inicialmente, todos os protocolos são exibidos
+        console.log(data.map(d => {
+          console.log(d.created_at)
+        }))
       },
       (error) => {
         console.error('Erro ao carregar protocolos:', error);
@@ -47,8 +50,8 @@ export class TabelaSolicitantesComponent implements OnInit {
   // Função chamada quando a barra de pesquisa for usada
   onSearch(searchTerm: string): void {
     this.filteredProtocols = this.protocols.filter(protocol =>
-      protocol.user.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      protocol.user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       protocol.id.toString().includes(searchTerm) // Filtra pelo nome ou número do protocolo
     );
-  }  
+  }
 }

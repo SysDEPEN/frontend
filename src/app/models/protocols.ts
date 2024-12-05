@@ -1,21 +1,21 @@
 export class Protocols {
     id!: number; // Adicione o ID, conforme retornado pelo JSON
-    createdAt!: string; // Mapeia para "created_at" no JSON
-    updatedAt!: string; // Mapeia para "updated_at" no JSON
+    created_at!: string; // Mapeia para "created_at" no JSON
+    updated_at!: string; // Mapeia para "updated_at" no JSON
     user!: User; // Usuário associado
     reqInfo!: RequerimentoInfo; // Informações do requerimento (req_info no JSON)
     doc!: Document | null; // Documento associado
     admin!: Admin | null; // Administrador associado
     status!: number; // Status do protocolo
   }
-  
+
   export class User {
     id!: number;
     name!: string;
     document!: string;
     email!: string;
   }
-  
+
   export class RequerimentoInfo {
     id!: number;
     nameVisited!: string; // Altere para "name_visited" conforme o JSON
@@ -29,12 +29,12 @@ export class Protocols {
     numberHouse!: string; // Altere para "number_house" conforme o JSON
     subject!: string | null;
   }
-  
+
   export class Document {
     title!: string;
     fileUrl!: string;
   }
-  
+
   export class Admin {
     name!: string;
     role!: string;
