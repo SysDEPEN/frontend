@@ -10,7 +10,10 @@ export class SearchBarComponent {
   @Output() search = new EventEmitter<string>();
 
   // Emitir o valor da pesquisa para o componente pai
-  onSearchChange(value: string): void {
-    this.search.emit(value);
+  onSearchChange(event: Event): void {
+    const input = event.target as HTMLInputElement;  // Cast do tipo do evento para HTMLInputElement
+    if (input) {
+      this.search.emit(input.value);  // Emite o valor da pesquisa
+    }
   }
 }

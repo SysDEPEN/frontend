@@ -47,8 +47,8 @@ export class TabelaSolicitantesComponent implements OnInit {
   // Função chamada quando a barra de pesquisa for usada
   onSearch(searchTerm: string): void {
     this.filteredProtocols = this.protocols.filter(protocol =>
-      protocol.user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      protocol.id.toString().includes(searchTerm) // Filtra pelo nome ou protocolo
+      protocol.user.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      protocol.id.toString().includes(searchTerm) // Filtra pelo nome ou número do protocolo
     );
-  }
+  }  
 }

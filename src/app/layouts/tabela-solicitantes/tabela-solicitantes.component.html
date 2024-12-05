@@ -1,8 +1,8 @@
 <div>
   <h3 class="mtop mleft">Solicitações Pendentes</h3>
   
-  <!-- Barra de pesquisa (sem alterar o layout) -->
-  <app-search-bar></app-search-bar>
+  <!-- Barra de pesquisa (logo abaixo do título) -->
+  <app-search-bar (search)="onSearch($event)"></app-search-bar> <!-- Aqui você faz o binding do evento para chamar a função onSearch -->
 
   <table class="table table-striped mt-2">
     <thead>
