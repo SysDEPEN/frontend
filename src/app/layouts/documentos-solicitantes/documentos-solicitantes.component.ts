@@ -1,12 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-documentos-solicitantes',
   standalone: true,
-  imports: [],
   templateUrl: './documentos-solicitantes.component.html',
-  styleUrl: './documentos-solicitantes.component.scss'
+  styleUrls: ['./documentos-solicitantes.component.scss'],
 })
-export class DocumentosSolicitantesComponent {
+export class DocumentosSolicitantesComponent implements OnInit {
+  protocol: any;
 
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.protocol = history.state.protocol;
+    if (!this.protocol) {
+      console.error('Nenhum protocolo foi passado.');
+      this.router.navigate(['/tabela-solicitantes']); // Redireciona para a tabela se não houver protocolo
+    }
+  }
 }

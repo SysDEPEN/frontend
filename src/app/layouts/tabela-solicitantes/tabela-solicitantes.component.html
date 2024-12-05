@@ -1,7 +1,8 @@
-<app-search-bar></app-search-bar>
-
 <div>
   <h3 class="mtop mleft">Solicitações Pendentes</h3>
+  
+  <!-- Barra de pesquisa (sem alterar o layout) -->
+  <app-search-bar></app-search-bar>
 
   <table class="table table-striped mt-2">
     <thead>
@@ -13,15 +14,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let protocol of protocols">
-        <td>{{ protocol.user.name }}</td> <!-- Nome do solicitante -->
-        <td>{{ protocol.id }}</td> <!-- Protocolo (ID do protocolo) -->
-        <td>{{ formatDate (protocol.createdAt) }}</td> <!-- Data de envio formatada -->
+      <tr *ngFor="let protocol of filteredProtocols">
+        <td>{{ protocol.user.name }}</td>
+        <td>{{ protocol.id }}</td>
+        <td>{{ formatDate(protocol.createdAt) }}</td>
         <td>
-          <button               
-            class="btn btn-primary"
-            (click)="handleProtocol(protocol.status)"
-          >
+          <button class="btn btn-primary" (click)="handleProtocol(protocol)">
             Detalhes
           </button>
         </td>
