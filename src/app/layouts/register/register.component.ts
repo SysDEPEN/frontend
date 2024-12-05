@@ -40,36 +40,78 @@ export class RegisterComponent {
   onRegister() {
     if (this.registerForm.valid) {
       const userCurrent = this.registerForm.value;
-      this.register
-        .handleRegister(userCurrent)
-        .subscribe({
-          next: (response) => {
-            Swal.fire({
-              title: 'Sucesso!',
-              text: 'Cadastro realizado com sucesso',
-              icon: 'success',
-              confirmButtonText: 'Seguir para o Login',
-            });
-            this.router.navigate(['/sign-in']);
-          },
-          error: (error) => {
-            Swal.fire({
-              title: 'Erro',
-              text: 'Falha ao realizar cadastro',
-              icon: 'error',
-              confirmButtonText: 'Tente novamente',
-            });
-          },
-        });
+      this.register.handleRegister(userCurrent).subscribe({
+        next: (response) => {
+          Swal.fire({
+            title: 'Sucesso!',
+            text: 'Cadastro realizado com sucesso',
+            icon: 'success',
+            confirmButtonText: 'Seguir para o Login',
+          });
+          this.router.navigate(['/sign-in']);
+        },
+        error: (error) => {
+          Swal.fire({
+            title: 'Erro',
+            text: 'Falha ao realizar cadastro',
+            icon: 'error',
+            confirmButtonText: 'Tente novamente',
+          });
+        },
+      });
     } else {
+      this.handleFormErrors();
+    }
+  }
+  
+  handleFormErrors() {
+    const errors: string[] = [];
+    
+    // Verificando campo 'name'
+    if (this.registerForm.get('name')?.hasError('required')) {
+      errors.push('Nome Completo é obrigatório');
+    }
+  
+    // Verificando campo 'document'
+    if (this.registerForm.get('document')?.hasError('required')) {
+      errors.push('CPF ou RNE é obrigatório');
+    }
+  
+    // Verificando campo 'email'
+    if (this.registerForm.get('email')?.hasError('required')) {
+      errors.push('Email é obrigatório');
+    } else if (this.registerForm.get('email')?.hasError('email')) {
+      errors.push('Email inválido');
+    }
+  
+    // Verificando campo 'password'
+    if (this.registerForm.get('password')?.hasError('required')) {
+      errors.push('Senha é obrigatória');
+    } else if (this.registerForm.get('password')?.hasError('minlength')) {
+      errors.push('A senha deve ter no mínimo 6 caracteres');
+    }
+  
+    // Verificando campo 'birthDate'
+    if (this.registerForm.get('birthDate')?.hasError('required')) {
+      errors.push('Data de nascimento é obrigatória');
+    }
+  
+    // Verificando campo 'gender'
+    if (this.registerForm.get('gender')?.hasError('required')) {
+      errors.push('Gênero é obrigatório');
+    }
+  
+    //swal
+    if (errors.length > 0) {
       Swal.fire({
-        title: 'Formulário inválido',
-        text: 'Por favor, preencha todos os campos corretamente.',
+        title: 'Erro no formulário',
+        html: `<ul><li>${errors.join('</li><li>')}</li></ul>`,
         icon: 'warning',
         confirmButtonText: 'OK',
       });
     }
   }
+  
 
   onBirthDateChange(date: string) {
     this.registerForm.get('birthDate')?.setValue(date);
