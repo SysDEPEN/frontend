@@ -12,12 +12,14 @@ import { SobreComponent } from './layouts/sobre/sobre.component';
 import { ContatosComponent } from './layouts/contatos/contatos.component';
 import { TabelaSolicitantesComponent } from './layouts/tabela-solicitantes/tabela-solicitantes.component';
 import { DocumentosSolicitantesComponent } from './layouts/documentos-solicitantes/documentos-solicitantes.component';
+import { RegisterEditorComponent } from './layouts/register-editor/register.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' }, // Rota padrão
   { path: 'home', component: HomePageComponent }, // Página inicial
   { path: 'sign-in', component: LoginComponent }, // Login
   { path: 'sign-up', component: RegisterComponent }, // Registro
+  { path: 'sign-up-editor', component: RegisterEditorComponent }, // Registro de editor
   { path: 'send-form', component: SendFormComponent }, // Envio de formulário parte 1
   { path: 'send-form2', component: SendForm2Component }, // Envio de formulário parte 2
   { path: 'send-document', component: SendDocumentsComponent }, // Envio de documentos
