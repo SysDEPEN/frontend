@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit, Output } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { jwtDecode } from 'jwt-decode';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { IBGEService } from '../../services/bge.service';
-
 import { Router } from '@angular/router';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import Swal from 'sweetalert2';
@@ -28,11 +27,10 @@ import { ReqCampService } from '../../services/req_camp.service';
 })
 export class formComponent implements OnInit {
   router = inject(Router);
-  form: FormGroup; // Define o FormGroup
+  form: FormGroup;
 
-  UF: IBGEUFResponse[] = []; // Lista das UFs
-  cities: IBGECityResponse[] = []; // Lista de Cidades
-
+  UF: IBGEUFResponse[] = [];
+  cities: IBGECityResponse[] = [];
   documentType: 'RNE' | 'RG' = 'RG';
 
   typeVisit = [
@@ -49,14 +47,11 @@ export class formComponent implements OnInit {
 
   user: any;
 
-
-
   constructor(
     private ibgeService: IBGEService,
     private req_campService: ReqCampService,
     private localStorageService: LocalStorageService,
   ) {
-    // Inicialize o FormGroup
     this.form = new FormGroup({
       name_visited: new FormControl('', Validators.required),
       cpf_rne: new FormControl('', Validators.required),
@@ -99,17 +94,15 @@ export class formComponent implements OnInit {
   }
 
   submitForm(): void {
-    let dat_user = {
-      id: this.user.id,
-    };
     if (this.form.valid) {
-      const formData: reqCamp = this.form.value; // Captura os dados do formulário
+      let dat_user = { id: this.user.id };
+      const formData: reqCamp = this.form.value;
       const data = {
         ...formData,
-        id_user: dat_user, // Adiciona os dados do usuário ao objeto de envio
+        id_user: dat_user,
       };
 
-      console.log(data); // Exibe os dados a serem enviados
+      console.log(data);
 
       const requerimentoInfo: reqCamp = {
         id: null,
@@ -124,7 +117,6 @@ export class formComponent implements OnInit {
         number_house: data.number_house,
       };
 
-
       this.req_campService.save(requerimentoInfo).subscribe({
         next: (response) => {
           Swal.fire({
@@ -133,21 +125,89 @@ export class formComponent implements OnInit {
             icon: 'success',
             confirmButtonText: 'Seguir para o envio de documentos',
           });
-          // this.form2.OnSubmit(response.id)
           this.router.navigate(['/send-form2'], { state: { data: response.id } });
         },
         error: (error) => {
           console.log(error);
-          Swal.fire({
-            title: 'Erro',
-            text: 'Falha ao realizar o formulário: ',
-            icon: 'error',
-            confirmButtonText: 'Tente novamente',
-          });
+
+          if (error.status === 400 && error.error.errors) {
+            this.clearFormErrors();
+
+            error.error.errors.forEach((err: { field: string; message: string }) => {
+              const control = this.form.get(err.field);
+              if (control) {
+                control.setErrors({ backend: err.message });
+              }
+            });
+
+            Swal.fire({
+              title: 'Erro',
+              text: 'Falha ao realizar o formulário: Verifique os campos.',
+              icon: 'error',
+              confirmButtonText: 'Tente novamente',
+            });
+          } else {
+            Swal.fire({
+              title: 'Erro',
+              text: 'Falha ao enviar o formulário. Tente novamente mais tarde.',
+              icon: 'error',
+              confirmButtonText: 'Fechar',
+            });
+          }
         },
       });
     } else {
       console.log('Formulário inválido', this.form);
+      this.highlightInvalidFields();
     }
+  }
+
+  highlightInvalidFields(): void {
+    const invalidFields: string[] = [];
+    Object.keys(this.form.controls).forEach((key) => {
+      const control = this.form.get(key);
+      if (control && control.invalid) {
+        invalidFields.push(this.getFieldLabel(key));
+      }
+    });
+
+    if (invalidFields.length > 0) {
+      Swal.fire({
+        title: 'Campos Obrigatórios',
+        html: `
+          <p>Os seguintes campos precisam ser preenchidos:</p>
+          <ul>
+            ${invalidFields.map((field) => `<li>${field}</li>`).join('')}
+          </ul>
+        `,
+        icon: 'warning',
+        confirmButtonText: 'Fechar',
+      });
+    }
+  }
+
+  getFieldLabel(fieldName: string): string {
+    const fieldLabels: { [key: string]: string } = {
+      name_visited: 'Nome do Visitado',
+      cpf_rne: 'CPF/RNE',
+      cellphone: 'Celular',
+      type_visitation: 'Tipo de Visitação',
+      state: 'Estado',
+      city: 'Cidade',
+      district: 'Bairro',
+      street: 'Rua',
+      number_house: 'Número da Casa',
+    };
+
+    return fieldLabels[fieldName] || fieldName;
+  }
+
+  clearFormErrors(): void {
+    Object.keys(this.form.controls).forEach((key) => {
+      const control = this.form.get(key);
+      if (control) {
+        control.setErrors(null);
+      }
+    });
   }
 }
