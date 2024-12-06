@@ -1,6 +1,6 @@
-// status-card.component.ts
 import { Component, OnInit, Input } from '@angular/core';
-import { Protocol, ProtocolService } from '../../services/protocol/status.service';
+import { ProtocolsService } from '../../services/protocol.service';
+import { Protocols } from '../../models/protocols';
 
 @Component({
   selector: 'app-status-card',
@@ -8,8 +8,7 @@ import { Protocol, ProtocolService } from '../../services/protocol/status.servic
   styleUrls: ['./status-protocol.component.scss'],
 })
 export class StatusCardComponent implements OnInit {
-  @Input() protocolId!: number; // ID do protocolo passado como entrada
-  protocol?: Protocol;
+  @Input() protocolId!: string;
 
   statuses = [
     { step: 1, label: 'Envio de documentos', completed: false },
@@ -17,30 +16,42 @@ export class StatusCardComponent implements OnInit {
     { step: 3, label: 'Emissão', completed: false },
   ];
 
-  constructor(private protocolService: ProtocolService) {}
+  protocol?: Protocols;
+
+  constructor(private protocolService: ProtocolsService) {}
 
   ngOnInit(): void {
     if (this.protocolId) {
-      this.protocolService.getProtocolById(this.protocolId).subscribe(
-        (data) => {
-          this.protocol = data;
-          this.updateStatuses();
-        },
-        (error) => {
-          console.error('Erro ao buscar protocolo:', error);
-        }
-      );
+      this.loadProtocol();
     }
   }
 
-  updateStatuses() {
-    if (this.protocol?.status) {
-      const statusIndex = this.statuses.findIndex(
-        (s) => s.label.toLowerCase() === this.protocol?.status.toLowerCase()
-      );
-      this.statuses.forEach((step, index) => {
-        step.completed = index <= statusIndex;
+  private loadProtocol(): void {
+    this.protocolService.findByUserEmail(this.protocolId).subscribe(
+      (protocols) => {
+        if (protocols && protocols.length > 0) {
+          this.protocol = protocols[0];
+          this.updateStatuses();
+        } else {
+          console.warn('Nenhum protocolo encontrado para o ID fornecido.');
+        }
+      },
+      (error) => {
+        console.error('Erro ao buscar protocolo:', error);
+      }
+    );
+  }
+
+  private updateStatuses(): void {
+    if (typeof this.protocol?.status === 'number') {
+      // Status é numérico, comparado com o step
+      this.statuses.forEach((step) => {
+        step.completed = step.step <= this.protocol!.status;
       });
+    } else {
+      console.warn('Tipo de status inesperado:', this.protocol?.status);
     }
   }
+  
+  
 }
