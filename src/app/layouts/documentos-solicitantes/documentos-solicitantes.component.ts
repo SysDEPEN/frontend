@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Protocols } from '../../models/protocols';  
+import { Protocols } from '../../models/protocols';
 import { ProtocolsService } from '../../services/protocol.service';  // Serviço para atualizar protocolo
+import { reqCamp } from '../../models/req_camps';
 
 @Component({
   selector: 'app-documentos-solicitantes',
   templateUrl: './documentos-solicitantes.component.html',
-  styleUrls: ['./documentos-solicitantes.component.css']
+  styleUrls: ['./documentos-solicitantes.component.scss']
 })
 export class DocumentosSolicitantesComponent implements OnInit {
   protocol!: Protocols;  // Protocolo a ser atualizado
+  reqInfo!: reqCamp;
 
   constructor(
     private router: Router,
@@ -22,6 +24,9 @@ export class DocumentosSolicitantesComponent implements OnInit {
 
     if (navigationState && navigationState['protocol']) {
       this.protocol = navigationState['protocol']; // Atribui o protocolo recebido
+      console.log(this.protocol.req_info);
+      this.reqInfo = this.protocol.req_info;
+      console.log(this.reqInfo)
     } else {
       console.error('Nenhum protocolo recebido.');
       this.router.navigate(['/tabela-solicitantes']); // Redireciona caso não haja protocolo

@@ -18,7 +18,7 @@ import { RegisterService } from '../../services/register/register.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent {
+export class RegisterEditorComponent {
   registerForm: FormGroup;
   router = inject(Router);
 
@@ -40,7 +40,7 @@ export class RegisterComponent {
   onRegister() {
     if (this.registerForm.valid) {
       const userCurrent = this.registerForm.value;
-      this.register.handleRegister(userCurrent, 0).subscribe({
+      this.register.handleRegister(userCurrent, 1).subscribe({
         next: (response) => {
           Swal.fire({
             title: 'Sucesso!',

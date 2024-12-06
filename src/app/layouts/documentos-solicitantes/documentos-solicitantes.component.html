@@ -1,6 +1,6 @@
 <div class="container">
     <h2>Detalhes do Protocolo</h2>
-  
+
     <div class="section1 mtop">
       <div class="section2 mtop">
         <!-- Nome do Visitante -->
@@ -13,7 +13,7 @@
             readonly
           />
         </div>
-  
+
         <!-- CPF do Visitante -->
         <div class="mtop">
           <a>CPF do visitante:</a>
@@ -24,19 +24,19 @@
             readonly
           />
         </div>
-  
+
         <!-- Nome do Visitado -->
         <div class="mtop">
           <a>Nome do visitado:</a>
           <input
             class="form-control inputbar bg-input"
             type="text"
-            [value]="protocol?.reqInfo?.nameVisited || ''"
+            [value]="reqInfo?.name_visited || ''"
             readonly
           />
         </div>
       </div>
-  
+
       <div class="section2 mtop">
         <!-- Protocolo -->
         <div class="mtop">
@@ -48,29 +48,28 @@
             readonly
           />
         </div>
-  
+
         <!-- Telefone do Visitante -->
         <div class="mtop">
           <a>Telefone do visitante:</a>
           <input
             class="form-control inputbar bg-input"
             type="text"
-            [value]="protocol?.reqInfo?.cellphone || ''"
+            [value]="protocol?.req_info?.cellphone|| ''"
             readonly
           />
         </div>
-  
+
         <!-- CPF/RNE do Visitado -->
         <div class="mtop">
           <a>CPF / RNE do visitado:</a>
           <input
             class="form-control inputbar bg-input"
             type="text"
-            [value]="protocol?.reqInfo?.cpfRne || ''"
+            [value]="protocol?.req_info?.cpf_rne || ''"
             readonly
           />
         </div>
       </div>
     </div>
   </div>
-  

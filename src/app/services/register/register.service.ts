@@ -20,8 +20,7 @@ export class RegisterService {
     );
   }
 
-  handleRegister(res: Usuario): Observable<string> {
-    const role: number = 0;
+  handleRegister(res: Usuario, role: number): Observable<string> {
     const registerData: Usuario = {
       name: res.name,
       document: res.document,

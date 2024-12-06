@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { MdbCollapseModule } from 'mdb-angular-ui-kit/collapse';
 import { RegisterService } from '../../services/register/register.service';
+import { Observable } from 'rxjs';
+import { Usuario } from '../../auth/usuario';
 
 interface JwtCustomPayload {
   id: string; // Ou o tipo correspondente
@@ -20,8 +22,8 @@ export class HeaderComponent {
   user: any;
   userLogged: boolean = false;
 
-  constructor(public userService: RegisterService) {}
-
+  constructor(public userService: RegisterService) { }
+  userCurrent: Usuario | any = null;
   ngOnInit(): void {
     const storedUser = localStorage.getItem('token');
     if (storedUser) {
@@ -29,10 +31,23 @@ export class HeaderComponent {
       const decodedToken = jwtDecode<JwtCustomPayload>(storedUser);
 
       var id = Number(decodedToken.id);
-      this.user = this.userService.findUserById(id); // Agora sem erro
-      console.log(this.user);
+      console.log(id);
+      this.findUser(id).subscribe({
+        next: (user) => {
+          this.userCurrent = user;
+          console.log('Usuário encontrado:', this.userCurrent.name);
+          this.user = this.userCurrent.name
+        }
+      })
+
       this.userLogged = true;
       console.log(this.userLogged);
     }
+  }
+
+  findUser(id: number): Observable<Usuario[]> {
+    var user = this.userService.findUserById(id);
+    console.log(user)
+    return user;
   }
 }

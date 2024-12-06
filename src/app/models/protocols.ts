@@ -1,20 +1,25 @@
-export class Protocols {
-  id!: number; // ID do protocolo
-  created_at!: string; // Data de criação do protocolo
-  updated_at!: string; // Data de atualização do protocolo
-  user!: User; // Usuário associado ao protocolo
-  reqInfo!: RequerimentoInfo; // Informações do requerimento
-  doc!: Document | null; // Documento associado (se houver)
-  admin!: Admin | null; // Administrador associado (se houver)
-  status!: number; // Status do protocolo
-}
+import { Observable } from "rxjs";
+import { Usuario } from "../auth/usuario";
+import { Register } from "./register";
+import { reqCamp } from "./req_camps";
 
-export class User {
-  id!: number;
-  name!: string; // Nome do visitante
-  document!: string; // Documento do visitante (CPF, RG.)
-  email!: string; // E-mail do visitante
-}
+export class Protocols {
+    id?: number; // Adicione o ID, conforme retornado pelo JSON
+    created_at!: string; // Mapeia para "created_at" no JSON
+    updated_at!: string; // Mapeia para "updated_at" no JSON
+    user!: Usuario | any; // Usuário associado
+    req_info!: reqCamp | any; // Informações do requerimento (req_info no JSON)
+    doc!: Document | null; // Documento associado
+    admin!: Admin | null; // Administrador associado
+    status!: number; // Status do protocolo
+  }
+
+  // export class User {
+  //   id!: number;
+  //   name!: string;
+  //   document!: string;
+  //   email!: string;
+  // }
 
 export class RequerimentoInfo {
   id!: number;
@@ -32,7 +37,7 @@ export class RequerimentoInfo {
 
 export class Document {
   title!: string; // Título do documento
-  fileUrl!: string; // URL 
+  fileUrl!: string; // URL
 }
 
 export class Admin {
