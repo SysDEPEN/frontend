@@ -15,16 +15,14 @@
     </thead>
     <tbody>
       <tr *ngFor="let protocol of filteredProtocols">
-        <div class="container" *ngIf="protocol.status == 0">
-          <td>{{ protocol.user.name }}</td>
-          <td>{{ protocol.id }}</td>
-          <td>{{ formatDate(protocol.created_at) }}</td>
-          <td>
-            <button class="btn btn-primary" (click)="handleProtocol(protocol)">
-              Detalhes
-            </button>
-          </td>
-        </div>
+        <td class="elemento_tabela">{{ protocol.user.name }}</td>
+        <td  class="elemento_tabela">{{ protocol.id }}</td>
+        <td class="elemento_tabela">{{ formatDate(protocol.created_at) }}</td>
+        <td class="elemento_tabela">
+          <button class="btn btn-primary" (click)="handleProtocol(protocol)">
+            Detalhes
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
