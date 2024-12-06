@@ -12,7 +12,7 @@ export class Protocols {
 export class User {
   id!: number;
   name!: string; // Nome do visitante
-  document!: string; // Documento do visitante (CPF, RG, etc.)
+  document!: string; // Documento do visitante (CPF, RG.)
   email!: string; // E-mail do visitante
 }
 
@@ -32,7 +32,7 @@ export class RequerimentoInfo {
 
 export class Document {
   title!: string; // Título do documento
-  fileUrl!: string; // URL do arquivo
+  fileUrl!: string; // URL 
 }
 
 export class Admin {
