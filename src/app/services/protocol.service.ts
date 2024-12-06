@@ -32,8 +32,8 @@ export class ProtocolsService {
   }
 
   // Atualizar um protocolo existente
-  update(protocol: Protocols): Observable<Protocols> {
-    const url = `${this.API}/update`;
+  update(protocol: Protocols, id: number | any): Observable<Protocols> {
+    const url = `${this.API}/update/${id}`;
     return this.http.put<Protocols>(url, protocol);
   }
 

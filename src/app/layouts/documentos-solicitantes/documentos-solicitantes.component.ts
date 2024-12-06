@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Protocols } from '../../models/protocols';
 import { ProtocolsService } from '../../services/protocol.service';  // Serviço para atualizar protocolo
 import { reqCamp } from '../../models/req_camps';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-documentos-solicitantes',
@@ -51,14 +52,24 @@ export class DocumentosSolicitantesComponent implements OnInit {
 
   // Função para salvar as alterações no banco
   salvarStatusNoBanco(protocol: Protocols): void {
-    this.protocolsService.update(protocol).subscribe(
+    var id = protocol.id
+    this.protocolsService.update(protocol, id).subscribe(
       (updatedProtocol) => {
-        console.log('Protocolo atualizado:', updatedProtocol);
-        // Redirecionar ou mostrar mensagem de sucesso se necessário
+        Swal.fire({
+          title: 'Sucesso!',
+          text: 'Status atualizado com sucesso',
+          icon: 'success',
+          confirmButtonText: 'Ok',
+        });
         this.router.navigate(['/tabela-solicitantes']);
       },
       (error) => {
-        console.error('Erro ao atualizar o protocolo:', error);
+        Swal.fire({
+          title: 'Erro!',
+          text: 'Erro ao atualizar status do protocolo',
+          icon: 'error',
+          confirmButtonText: 'Seguir para o Login',
+        });
         // Mostrar mensagem de erro ao usuário
       }
     );
