@@ -14,7 +14,7 @@ import { SearchBarComponent } from '../../components/search-bar/search-bar.compo
 })
 export class TabelaSolicitantesComponent implements OnInit {
   protocols: Protocols[] = [];
-  filteredProtocols: Protocols[] = []; // Protocolos filtrados
+  filteredProtocols: Protocols[] = []; // Protocolos filtrados  saaas
 
   constructor(private protocolsService: ProtocolsService, private router: Router) {}
 
@@ -26,7 +26,7 @@ export class TabelaSolicitantesComponent implements OnInit {
     this.protocolsService.findAll().subscribe(
       (data) => {
         this.protocols = data;
-        this.filteredProtocols = data; // Inicialmente, todos os protocolos são exibidos
+        this.filteredProtocols = data; 
       },
       (error) => {
         console.error('Erro ao carregar protocolos:', error);

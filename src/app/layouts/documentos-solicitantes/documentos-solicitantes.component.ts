@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Protocols } from '../../models/protocols';  // Certifique-se de que o modelo está correto
+import { Protocols } from '../../models/protocols';  
 import { ProtocolsService } from '../../services/protocol.service';  // Serviço para atualizar protocolo
 
 @Component({
