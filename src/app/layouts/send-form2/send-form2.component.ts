@@ -84,7 +84,7 @@ export class SendForm2Component {
             },
             admin: null,
             doc: null,
-            reqInfo: {
+            req_info: {
               id: this.req
             },
             status: 0

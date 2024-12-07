@@ -14,7 +14,7 @@ import { SearchBarComponent } from '../../components/search-bar/search-bar.compo
 })
 export class TabelaSolicitantesComponent implements OnInit {
   protocols: Protocols[] = [];
-  filteredProtocols: Protocols[] = []; // Protocolos filtrados
+  filteredProtocols: Protocols[] = []; // Protocolos filtrados  saaas
 
   constructor(private protocolsService: ProtocolsService, private router: Router) {}
 
@@ -26,10 +26,7 @@ export class TabelaSolicitantesComponent implements OnInit {
     this.protocolsService.findAll().subscribe(
       (data) => {
         this.protocols = data;
-        this.filteredProtocols = data; // Inicialmente, todos os protocolos são exibidos
-        console.log(data.map(d => {
-          console.log(d.created_at)
-        }))
+        this.filteredProtocols = data; 
       },
       (error) => {
         console.error('Erro ao carregar protocolos:', error);
@@ -38,6 +35,7 @@ export class TabelaSolicitantesComponent implements OnInit {
   }
 
   handleProtocol(protocol: Protocols): void {
+    console.log('Protocol enviado:', protocol); // Log do protocolo
     this.router.navigate(['/documento-solicitantes'], { state: { protocol } });
   }
 

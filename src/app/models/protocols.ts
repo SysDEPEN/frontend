@@ -8,7 +8,7 @@ export class Protocols {
     created_at!: string; // Mapeia para "created_at" no JSON
     updated_at!: string; // Mapeia para "updated_at" no JSON
     user!: Usuario | any; // Usuário associado
-    reqInfo!: reqCamp | any; // Informações do requerimento (req_info no JSON)
+    req_info!: reqCamp | any; // Informações do requerimento (req_info no JSON)
     doc!: Document | null; // Documento associado
     admin!: Admin | null; // Administrador associado
     status!: number; // Status do protocolo
@@ -21,26 +21,26 @@ export class Protocols {
   //   email!: string;
   // }
 
-  export class RequerimentoInfo {
-    id!: number;
-    nameVisited!: string; // Altere para "name_visited" conforme o JSON
-    cpfRne!: string; // Altere para "cpf_rne" conforme o JSON
-    typeVisitation!: string; // Altere para "type_visitation" conforme o JSON
-    cellphone!: string;
-    state!: string;
-    city!: string;
-    district!: string;
-    street!: string;
-    numberHouse!: string; // Altere para "number_house" conforme o JSON
-    subject!: string | null;
-  }
+export class RequerimentoInfo {
+  id!: number;
+  nameVisited!: string; // Nome do visitado
+  cpfRne!: string; // CPF ou RNE do visitado
+  typeVisitation!: string; // Tipo de visitação
+  cellphone!: string; // Telefone do visitante
+  state!: string; // Estado
+  city!: string; // Cidade
+  district!: string; // Bairro
+  street!: string; // Rua
+  numberHouse!: string; // Número da casa
+  subject!: string | null; // Assunto da visita
+}
 
-  export class Document {
-    title!: string;
-    fileUrl!: string;
-  }
+export class Document {
+  title!: string; // Título do documento
+  fileUrl!: string; // URL
+}
 
-  export class Admin {
-    name!: string;
-    role!: string;
-  }
+export class Admin {
+  name!: string; // Nome do administrador
+  role!: string; // Papel do administrador
+}
