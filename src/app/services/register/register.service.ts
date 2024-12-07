@@ -1,21 +1,23 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { catchError, Observable, throwError } from 'rxjs';  // Corrigindo as importações
 import { environment } from '../../../environments/environment';
-import { Usuario } from '../../auth/usuario';
+import { Usuario } from '../../auth/usuario';  // Corrigindo a importação da model
+
 @Injectable({
   providedIn: 'root',
 })
 export class RegisterService {
   private readonly API = environment.API_URI + 'usuario';
-  private http = inject(HttpClient);
 
-  constructor() {}
+  constructor(private http: HttpClient) {}  // Usando injeção através do construtor
 
-  findUserById(id: number): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(`${this.API}/findById/${id}`).pipe(
+  // Método para buscar o usuário pelo 'document'
+  findUserByDocument(document: string): Observable<Usuario> {  // Ajuste no tipo para retornar um único usuário
+    return this.http.get<Usuario>(`${this.API}/findByDocument/${document}`).pipe(
       catchError((error) => {
-        return throwError(() => error.error);
+        // Melhor forma de tratar erro, retornando uma mensagem personalizada
+        return throwError(() => new Error(error.error || 'Erro ao buscar usuário'));
       })
     );
   }
@@ -34,14 +36,14 @@ export class RegisterService {
       protocols: []
     };
 
-
     return this.http
       .post<string>(`${this.API}/save`, registerData, {
         responseType: 'text' as 'json',
       })
       .pipe(
         catchError((error) => {
-          return throwError(() => error.error);
+          // Tratamento de erro simplificado
+          return throwError(() => new Error(error.error || 'Erro ao registrar usuário'));
         })
       );
   }
