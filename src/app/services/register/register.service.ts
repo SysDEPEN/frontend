@@ -20,6 +20,15 @@ export class RegisterService {
     );
   }
 
+  findSingleUserById(id: number): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.API}/findById/${id}`).pipe(
+      catchError((error) => {
+        return throwError(() => error.error);
+      })
+    );
+  }
+  
+
   handleRegister(res: Usuario, role: number): Observable<string> {
     const registerData: Usuario = {
       name: res.name,

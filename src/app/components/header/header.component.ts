@@ -1,53 +1,47 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { jwtDecode } from 'jwt-decode';
-import { MdbCollapseModule } from 'mdb-angular-ui-kit/collapse';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { RegisterService } from '../../services/register/register.service';
 import { Observable } from 'rxjs';
 import { Usuario } from '../../auth/usuario';
-
-interface JwtCustomPayload {
-  id: string; // Ou o tipo correspondente
-  sub: string; // Ou outros campos que você espera
-}
+import { jwtDecode } from 'jwt-decode'; 
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MdbCollapseModule, CommonModule],
+  imports: [CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
   user: any;
   userLogged: boolean = false;
+  userCurrent: Usuario | null = null;
 
-  constructor(public userService: RegisterService) { }
-  userCurrent: Usuario | any = null;
+  constructor(public userService: RegisterService, private router: Router) {}
+
   ngOnInit(): void {
     const storedUser = localStorage.getItem('token');
     if (storedUser) {
-      // Use a interface personalizada ao decodificar o token
-      const decodedToken = jwtDecode<JwtCustomPayload>(storedUser);
-
-      var id = Number(decodedToken.id);
-      console.log(id);
-      this.findUser(id).subscribe({
-        next: (user) => {
-          this.userCurrent = user;
-          console.log('Usuário encontrado:', this.userCurrent.name);
-          this.user = this.userCurrent.name
-        }
-      })
-
+      const decodedToken = jwtDecode<any>(storedUser);
+      const id = Number(decodedToken.id);
+      this.findUser(id).subscribe((user) => {
+        this.userCurrent = user;
+        this.user = user.name;
+      });
       this.userLogged = true;
-      console.log(this.userLogged);
     }
   }
 
-  findUser(id: number): Observable<Usuario[]> {
-    var user = this.userService.findUserById(id);
-    console.log(user)
-    return user;
+  // Usando a nova função para buscar um único usuário
+  findUser(id: number): Observable<Usuario> {
+    return this.userService.findSingleUserById(id); 
+  }
+
+  onLogout(): void {
+    localStorage.removeItem('token');
+    this.userLogged = false;
+    this.user = null;
+    this.router.navigate(['/sign-in']);
   }
 }
