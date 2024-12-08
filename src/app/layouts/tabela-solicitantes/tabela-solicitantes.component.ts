@@ -25,14 +25,15 @@ export class TabelaSolicitantesComponent implements OnInit {
   loadProtocols(): void {
     this.protocolsService.findAll().subscribe(
       (data) => {
-        this.protocols = data;
-        this.filteredProtocols = data; 
+        this.protocols = data.filter(protocol => protocol.status === 0); // Filtra apenas os protocolos com status 0
+        this.filteredProtocols = this.protocols; // Inicializa os protocolos filtrados
       },
       (error) => {
         console.error('Erro ao carregar protocolos:', error);
       }
     );
   }
+  
 
   handleProtocol(protocol: Protocols): void {
     console.log('Protocol enviado:', protocol); // Log do protocolo
