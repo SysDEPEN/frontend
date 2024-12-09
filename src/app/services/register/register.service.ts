@@ -12,6 +12,7 @@ export class RegisterService {
 
   constructor() {}
 
+  // retorna lista de usuarios
   findUserById(id: number): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${this.API}/findById/${id}`).pipe(
       catchError((error) => {
@@ -20,6 +21,7 @@ export class RegisterService {
     );
   }
 
+  // retorna unico usuario
   findSingleUserById(id: number): Observable<Usuario> {
     return this.http.get<Usuario>(`${this.API}/findById/${id}`).pipe(
       catchError((error) => {
