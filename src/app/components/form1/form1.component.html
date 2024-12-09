@@ -25,27 +25,6 @@
           <label mdbLabel class="form-label" for="form6Example6">Telefone</label>
         </mdb-form-control>
 
-        <div class="row mb-4">
-          <div class="col">
-            <mdb-form-control>
-              <label for="typeVisitSelect" class="form-label">Selecione o tipo de visitação</label>
-              <select id="typeVisitSelect" class="form-select mdb-select" formControlName="type_visitation" required>
-                <option value="" disabled selected>Escolha</option>
-                <option *ngFor="let c of typeVisit" [value]="c.label">{{ c.label }}</option>
-              </select>
-            </mdb-form-control>
-          </div>
-          <!-- <div class="col">
-            <mdb-form-control>
-              <label for="reqOptionsSelect" class="form-label">Assunto do requerimento</label>
-              <select id="reqOptionsSelect" class="form-select mdb-select" formControlName="requerimento_assunto" required>
-                <option value="" disabled selected>Escolha</option>
-                <option *ngFor="let c of reqOptions" [value]="c.label">{{ c.label }}</option>
-              </select>
-            </mdb-form-control>
-          </div> -->
-        </div>
-
         <mdb-form-control class="mb-4">
           <label for="ufSelect" class="form-label">Selecione um Estado</label>
           <select id="ufSelect" class="form-select mdb-select" formControlName="state"
