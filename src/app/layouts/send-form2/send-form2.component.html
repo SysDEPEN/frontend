@@ -1,12 +1,33 @@
 <div class="container">
-  <h2>Upload de Arquivos</h2>
+  <h2 style="margin-left: 510px;">Upload de Arquivos</h2>
   <form [formGroup]="form" (ngSubmit)="handleRegisterProtocols()">
+
+    <!-- Dropdown com controle Angular -->
+    <div class="dropdown" [class.show]="isDropdownOpen">
+      <button class="btn btn-secondary dropdown-toggle" type="button" (click)="toggleDropdown()">
+        Tipo de Visitação
+      </button>
+      <ul class="dropdown-menu" [class.show]="isDropdownOpen">
+        <li><a class="dropdown-item" href="#" (click)="selectVisitType('Familiar')">Familiar</a></li>
+        <li><a class="dropdown-item" href="#" (click)="selectVisitType('Conjugal')">Conjugal</a></li>
+        <li><a class="dropdown-item" href="#" (click)="selectVisitType('Advogado')">Advogado</a></li>
+        <li><a class="dropdown-item" href="#" (click)="selectVisitType('Institucional')">Institucional</a></li>
+        <li><a class="dropdown-item" href="#" (click)="selectVisitType('Espiritual')">Espiritual</a></li>
+        <li><a class="dropdown-item" href="#" (click)="selectVisitType('Humanitaria')">Humanitária</a></li>
+        <li><a class="dropdown-item" href="#" (click)="selectVisitType('Amigos')">Amigos</a></li>
+        <li><a class="dropdown-item" href="#" (click)="selectVisitType('Imprensa')">Imprensa</a></li>
+        <li><a class="dropdown-item" href="#" (click)="selectVisitType('Menor de Idade')">Menor de Idade</a></li>
+        <li><a class="dropdown-item" href="#" (click)="selectVisitType('Video Conferencia')">Video Conferência</a></li>
+        <li><a class="dropdown-item" href="#" (click)="selectVisitType('Autoridades')">Autoridades</a></li>
+        <li><a class="dropdown-item" href="#" (click)="selectVisitType('Outro')">Outro</a></li>
+      </ul>
+    </div>
 
     <div class="form-group">
       <label for="files">RG</label>
       <input type="file" id="files" class="form-control" (change)="onFileSelected($event)" multiple>
       <span class="text-warning">
-        Não precisa adicionar documentos por enquanto, apenas vá no botão enviar para mandar os seu requerimento
+        Não precisa adicionar documentos por enquanto, apenas vá no botão enviar para mandar o seu requerimento
       </span>
     </div>
 
