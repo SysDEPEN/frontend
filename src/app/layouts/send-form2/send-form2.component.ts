@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { ReqDocsService } from '../../services/documents/req_docs.service';
 import { ReqDocs } from '../../models/req_docs';
 import { ProtocolsService } from '../../services/protocol.service';
 import { Protocols } from '../../models/protocols';
-import { Register } from '../../models/register';
 import { RegisterService } from '../../services/register/register.service';
 import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
@@ -11,21 +10,21 @@ import { Usuario } from '../../auth/usuario';
 import { reqCamp } from '../../models/req_camps';
 import { ReqCampService } from '../../services/req_camp.service';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 
-
+// Definição da interface JwtCustomPayload
 interface JwtCustomPayload {
-  id: string; // Ou o tipo correspondente
-  sub: string; // Ou outros campos que você espera
+  id: string;
+  sub: string;
 }
-
 
 @Component({
   selector: 'send-form2',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './send-form2.component.html',
-  styleUrl: './send-form2.component.scss'
+  styleUrls: ['./send-form2.component.scss']
 })
 export class SendForm2Component {
   userId!: number;
@@ -33,12 +32,13 @@ export class SendForm2Component {
   selectedFiles: File[] = [];
   req: number = 0;
   form: FormGroup;
+  isDropdownOpen = false; // Variável para controlar o estado do dropdown
 
   constructor(
     private protocolService: ProtocolsService,
     private userService: RegisterService,
     private reqService: ReqCampService) {
-    this.form = new FormGroup({})
+    this.form = new FormGroup({});
   }
 
   ngOnInit() {
@@ -49,31 +49,50 @@ export class SendForm2Component {
     this.selectedFiles = Array.from(event.target.files);
   }
 
+  // Alterna o estado do dropdown
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen; // Alterna entre aberto e fechado
+  }
 
+  // Fecha a dropdown se o clique for fora dela
+  @HostListener('document:click', ['$event'])
+  clickout(event: MouseEvent) {
+    const clickedInside = (event.target as HTMLElement).closest('.dropdown');
+    if (!clickedInside) {
+      this.isDropdownOpen = false;
+    }
+  }
+
+  // Método para processar a seleção do tipo de visitação
+  selectVisitType(type: string) {
+    this.documentType = type; // Armazena o tipo de visitação selecionado
+    this.isDropdownOpen = false; // Fecha o dropdown após a seleção
+  }
+
+  // Função para buscar o usuário no backend
   findUser(id: number): Observable<Usuario[]> {
     var user = this.userService.findUserById(id);
-    console.log(user)
+    console.log(user);
     return user;
   }
 
+  // Função para buscar os requerimentos no backend
   findReq(id: any): Observable<reqCamp[]> {
     var reqCamp = this.reqService.findReqById(id);
     return reqCamp;
   }
 
-
+  // Função para registrar o protocolo
   handleRegisterProtocols() {
     let userCurrent: Usuario | any = null;
     const storedUser = localStorage.getItem('token');
     if (storedUser) {
-      // Decodifica o token
       const decodedToken = jwtDecode<JwtCustomPayload>(storedUser);
       const id = Number(decodedToken.id);
 
-      // Busca o usuário pelo ID
       this.findUser(id).subscribe({
         next: (user) => {
-          userCurrent = user; // Aqui você obtém o valor emitido pelo Observable
+          userCurrent = user;
           console.log('Usuário encontrado:', user);
 
           const protocol: Protocols = {
@@ -90,7 +109,6 @@ export class SendForm2Component {
             status: 0
           };
 
-          // Salva o protocolo
           this.protocolService.save(protocol).subscribe({
             next: (response) => {
               console.log('Cadastrado com sucesso:', response);
@@ -114,5 +132,4 @@ export class SendForm2Component {
       });
     }
   }
-
 }

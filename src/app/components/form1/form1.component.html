@@ -1,7 +1,10 @@
 <div class="col-9 w-100 main">
   <div class="card">
     <div class="card-body">
-      <h2>Informe os seus dados</h2>
+      <h2 style="margin-left: 45px;">Informe os seus dados</h2>
+      <!-- Link para abrir o PDF -->
+  <a href="/docs/meuDocumento.pdf" target="_blank" class="btn btn-link" style="margin-left: 98px;">Relação de Documento</a>
+
       <form [formGroup]="form" (ngSubmit)="submitForm()">
         <!-- 2 column grid layout with text inputs for the first and last names -->
         <div class="row mb-4">
@@ -24,27 +27,6 @@
           <input mask="(00) 0 0000 0000" mdbInput type="text" formControlName="cellphone" class="form-control" />
           <label mdbLabel class="form-label" for="form6Example6">Telefone</label>
         </mdb-form-control>
-
-        <div class="row mb-4">
-          <div class="col">
-            <mdb-form-control>
-              <label for="typeVisitSelect" class="form-label">Selecione o tipo de visitação</label>
-              <select id="typeVisitSelect" class="form-select mdb-select" formControlName="type_visitation" required>
-                <option value="" disabled selected>Escolha</option>
-                <option *ngFor="let c of typeVisit" [value]="c.label">{{ c.label }}</option>
-              </select>
-            </mdb-form-control>
-          </div>
-          <!-- <div class="col">
-            <mdb-form-control>
-              <label for="reqOptionsSelect" class="form-label">Assunto do requerimento</label>
-              <select id="reqOptionsSelect" class="form-select mdb-select" formControlName="requerimento_assunto" required>
-                <option value="" disabled selected>Escolha</option>
-                <option *ngFor="let c of reqOptions" [value]="c.label">{{ c.label }}</option>
-              </select>
-            </mdb-form-control>
-          </div> -->
-        </div>
 
         <mdb-form-control class="mb-4">
           <label for="ufSelect" class="form-label">Selecione um Estado</label>
