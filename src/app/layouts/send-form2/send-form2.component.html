@@ -1,7 +1,10 @@
 <div class="container">
   <h2 style="margin-left: 510px;">Upload de Arquivos</h2>
-  <form [formGroup]="form" (ngSubmit)="handleRegisterProtocols()">
+  
+  <!-- Link para abrir o PDF -->
+  <a href="/docs/meuDocumento.pdf" target="_blank" class="btn btn-link" style="margin-left: 550px;">Relação de Documento</a>
 
+  <form [formGroup]="form" (ngSubmit)="handleRegisterProtocols()">
     <!-- Dropdown com controle Angular -->
     <div class="dropdown" [class.show]="isDropdownOpen">
       <button class="btn btn-secondary dropdown-toggle" type="button" (click)="toggleDropdown()">

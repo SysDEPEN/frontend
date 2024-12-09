@@ -1,7 +1,10 @@
 <div class="col-9 w-100 main">
   <div class="card">
     <div class="card-body">
-      <h2>Informe os seus dados</h2>
+      <h2 style="margin-left: 45px;">Informe os seus dados</h2>
+      <!-- Link para abrir o PDF -->
+  <a href="/docs/meuDocumento.pdf" target="_blank" class="btn btn-link" style="margin-left: 98px;">Relação de Documento</a>
+
       <form [formGroup]="form" (ngSubmit)="submitForm()">
         <!-- 2 column grid layout with text inputs for the first and last names -->
         <div class="row mb-4">
