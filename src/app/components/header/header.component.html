@@ -34,21 +34,21 @@
     </div>
 
     <!-- Botões de autenticação -->
-    <a *ngIf="!userLogged" href="/sign-in" class="btn btn-primary botao d-flex flex-row">
+    <a *ngIf="!userLogged" href="/sign-in" class="btn btn-primary botao d-flex flex-row" style="background-color: rgb(157, 157, 156);">
       Entrar
       <img src="/img/entar.png" alt="Logo" class="entrar" />
     </a>
-    <a *ngIf="!userLogged" href="/sign-up" class="register btn btn-primary botao d-flex flex-row">
+    <a *ngIf="!userLogged" href="/sign-up" class="register btn btn-primary botao d-flex flex-row" style="background-color: rgb(157, 157, 156);">
       Cadastrar
       <img src="/img/entar.png" alt="Logo" class="entrar" />
     </a>
 
     <div class="botoes">
-    <!-- Botão de logout -->
-    <button *ngIf="userLogged" class="btn btn-danger botao logout" (click)="onLogout()">Logout</button>
+      <!-- Botão de logout -->
+      <button *ngIf="userLogged" class="btn btn-danger botao logout" (click)="onLogout()">Logout</button>
 
-    <!-- Nome do usuário logado -->
-    <span *ngIf="userLogged" class="user btn btn-primary botao d-flex flex-row">{{ user }}</span>
-  </div>
+      <!-- Nome do usuário logado -->
+      <span *ngIf="userLogged" class="user btn btn-primary botao d-flex flex-row userColor" style= "background-color: rgb(157, 157, 156); color: rgb(255, 255, 255);">{{ user }}</span>
+    </div>
   </div>
 </nav>
