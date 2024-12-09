@@ -3,6 +3,14 @@
 @import 'mdb-angular-ui-kit/assets/scss/mdb.scss';
 
 body {
-  background-color: #fefefe;
+  background-color: #eae7e7; /* Cinza claro */
+  //background-image: url(''); /* Adicione uma leve textura */
+  background-repeat: repeat; /* Faz a textura se repetir */
+  background-size: contain; /* Ajusta o tamanho da textura */
+  color: #333; /* Cor do texto para manter boa legibilidade */
+  font-family: Arial, sans-serif; /* Exemplo de fonte */
+  margin: 0;
+  padding: 0;
 }
+
 
