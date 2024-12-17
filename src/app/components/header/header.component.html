@@ -43,12 +43,25 @@
       <img src="/img/entar.png" alt="Logo" class="entrar" />
     </a>
 
-    <div class="botoes">
+        <!-- Botão Solicitações - apenas para administradores -->
+        <a *ngIf="isAdmin" 
+          href="/tabela-solicitantes" 
+          class="solicitacoes btn btn-primary botao " 
+          style="background-color: rgb(134, 181, 86); color: rgb(255, 255, 255);">
+         Solicitações
+       </a>
+
+    <div class="botoes d-flex align-items-center">
+
       <!-- Botão de logout -->
       <button *ngIf="userLogged" class="btn btn-danger botao logout" (click)="onLogout()">Logout</button>
 
       <!-- Nome do usuário logado -->
-      <span *ngIf="userLogged" class="user btn btn-primary botao d-flex flex-row userColor" style= "background-color: rgb(157, 157, 156); color: rgb(255, 255, 255);">{{ user }}</span>
+      <span *ngIf="userLogged" 
+            class="user btn btn-primary botao d-flex flex-row userColor" 
+            style="background-color: rgb(49, 108, 218); color: rgb(255, 255, 255);">
+        {{ user }}
+      </span>
     </div>
   </div>
 </nav>

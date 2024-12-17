@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { RegisterService } from '../../services/register/register.service';
 import { Observable } from 'rxjs';
 import { Usuario } from '../../auth/usuario';
-import { jwtDecode } from 'jwt-decode'; 
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-header',
@@ -13,9 +13,10 @@ import { jwtDecode } from 'jwt-decode';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
-  user: any;
-  userLogged: boolean = false;
+export class HeaderComponent implements OnInit {
+  user: any;                    // Nome do usuário logado
+  userLogged: boolean = false;  // Define se o usuário está logado
+  isAdmin: boolean = false;     // Define se o usuário é administrador
   userCurrent: Usuario | null = null;
 
   constructor(public userService: RegisterService, private router: Router) {}
@@ -24,24 +25,32 @@ export class HeaderComponent {
     const storedUser = localStorage.getItem('token');
     if (storedUser) {
       const decodedToken = jwtDecode<any>(storedUser);
+      console.log('Token decodificado:', decodedToken); // Verifique aqui
       const id = Number(decodedToken.id);
       this.findUser(id).subscribe((user) => {
+        console.log('Usuário retornado do serviço:', user); // Confirme o retorno do usuário
         this.userCurrent = user;
         this.user = user.name;
+        this.isAdmin = Number(user.role) === 1;
+
+        console.log('isAdmin:', this.isAdmin); // Confirme o valor de isAdmin
       });
       this.userLogged = true;
     }
   }
+  
 
-  // Usando a nova função para buscar um único usuário
+  // Busca os dados do usuário no serviço
   findUser(id: number): Observable<Usuario> {
-    return this.userService.findSingleUserById(id); 
+    return this.userService.findSingleUserById(id);
   }
 
+  // Função de logout
   onLogout(): void {
     localStorage.removeItem('token');
     this.userLogged = false;
     this.user = null;
+    this.isAdmin = false; // Reseta a verificação de administrador
     this.router.navigate(['/sign-in']);
   }
 }
